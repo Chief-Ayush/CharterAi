@@ -1,9 +1,5 @@
 {
-<<<<<<< HEAD
   "name": "charter-ai",
-=======
-  "name": "vite-project",
->>>>>>> b9a3eb98f7aa68f79bfd3939947275d1a5b667c7
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -14,16 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
-<<<<<<< HEAD
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-router-dom": "^7.9.6",
     "react-transition-group": "^4.4.5"
-=======
-    "dotenv": "^17.2.3",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0"
->>>>>>> b9a3eb98f7aa68f79bfd3939947275d1a5b667c7
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
