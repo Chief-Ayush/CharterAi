@@ -10,7 +10,7 @@ export default function Login() {
 
   // ------------------ THEME ------------------
   const themeOrder = ["morning", "evening", "night"];
-  const themeLabels = { morning: "☀️ Morning", evening: "🌇 Evening", night: "🌙 Night" };
+  const themeLabels = { morning: "Morning", evening: "Evening", night: "Night" };
 
   const nextTheme = () => {
     const newTheme = themeOrder[(themeOrder.indexOf(theme) + 1) % themeOrder.length];
@@ -29,10 +29,10 @@ export default function Login() {
     if (!email || !password) return alert("Fill all fields");
 
     console.log("Login Data:", { email, password });
-    alert("Logged in successfully ✔");
+    alert("Logged in successfully");
   };
 
-  const handleGoogleLogin = () => alert("Google Login Coming Soon ⚡");
+  const handleGoogleLogin = () => alert("Google Login Coming Soon");
 
   // ------------------ LOADING SCREEN ------------------
   if (loading) return <LoaderScreen theme={theme} />;
@@ -80,7 +80,7 @@ export default function Login() {
   );
 }
 
-/* ----- ⚡️ Reusable Components ----- */
+/* ----- Reusable Components ----- */
 
 function LoaderScreen({ theme }) {
   return (
