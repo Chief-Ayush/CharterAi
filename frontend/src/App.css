@@ -1,48 +1,76 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* Container */
+.app-container {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
 }
 
-html,
-body,
-#root {
-  width: 100%;
-  height: 100%;
+/* Simple fade-in animation for page loads */
+.home-container,
+.auth-container {
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Route Change Loader */
+.route-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  z-index: 9999;
   overflow: hidden;
 }
 
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.route-loader.theme-morning {
+  background: rgba(14, 165, 233, 0.1);
 }
 
-button {
-  font-family: inherit;
+.route-loader.theme-evening {
+  background: rgba(249, 115, 22, 0.1);
 }
 
-input,
-textarea {
-  font-family: inherit;
+.route-loader.theme-night {
+  background: rgba(129, 140, 248, 0.1);
 }
 
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+.route-loader-bar {
+  height: 100%;
+  animation: loading 0.8s ease-in-out;
+  transform-origin: left;
 }
 
-::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05);
+.theme-morning .route-loader-bar {
+  background: linear-gradient(90deg, #0ea5e9, #06b6d4);
 }
 
-::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 4px;
+.theme-evening .route-loader-bar {
+  background: linear-gradient(90deg, #f97316, #fb923c);
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.3);
+.theme-night .route-loader-bar {
+  background: linear-gradient(90deg, #818cf8, #a78bfa);
+}
+
+@keyframes loading {
+  0% {
+    transform: scaleX(0);
+  }
+  50% {
+    transform: scaleX(0.5);
+  }
+  100% {
+    transform: scaleX(1);
+  }
 }
