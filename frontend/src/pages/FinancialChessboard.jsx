@@ -153,7 +153,7 @@ export default function FinancialChessboard() {
         </div>
         <Navbar theme={theme} onThemeToggle={nextTheme} showAuthButtons={false} />
         <div className="chessboard-content">
-          <div className="loading-message">Loading Financial Chessboard...</div>
+          <div className="loading-message">Loading Cashflow Simulator...</div>
         </div>
       </div>
     );

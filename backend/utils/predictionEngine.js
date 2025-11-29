@@ -2,7 +2,7 @@ const Document = require("../models/documentModel");
 const User = require("../models/userModel");
 
 /**
- * Financial Chessboard Prediction Engine
+ * Cashflow Simulator Prediction Engine
  * Simulates cashflow, detects conflicts, generates confidence bands
  */
 

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import "../styles/Auth.css";
 
 export default function Signup() {
@@ -24,13 +25,41 @@ export default function Signup() {
     setTimeout(() => setLoading(false), 900);
   }, []);
 
-  // ------------------ HANDLE SIGNUP ------------------
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!name || !email || !password) return alert("Fill all fields");
+  const navigate = useNavigate();
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
-    console.log("Signup Data:", { name, email, password });
-    alert("Account created successfully");
+  // ------------------ HANDLE SIGNUP ------------------
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!name || !email || !password) {
+      setError("Please fill all fields");
+      return;
+    }
+
+    try {
+      const response = await axios.post("http://localhost:4000/api/auth/signup", {
+        email,
+        password,
+        businessName: name,
+        timezone: "UTC",
+        country: "India",
+        currency: "INR",
+        gstFilingPeriod: "monthly",
+        gstScheme: "regular",
+      });
+
+      setSuccess("Account created successfully! Redirecting to login...");
+      setError("");
+
+      // Redirect to login page after 2 seconds
+      setTimeout(() => {
+        navigate("/login");
+      }, 2000);
+    } catch (err) {
+      setError(err.response?.data?.error || "Signup failed. Please try again.");
+      setSuccess("");
+    }
   };
 
   const handleGoogleSignup = () => alert("Google Signup Coming Soon");
@@ -57,6 +86,8 @@ export default function Signup() {
             <p>Join Charter.ai and start your financial journey.</p>
 
             <form onSubmit={handleSubmit}>
+              {error && <div className="error-message">{error}</div>}
+              {success && <div className="success-message">{success}</div>}
               <Input value={name} setter={setName} placeholder="Full Name" type="text" />
               <Input value={email} setter={setEmail} placeholder="Email" type="email" />
               <Input value={password} setter={setPassword} placeholder="Password" type="password" />

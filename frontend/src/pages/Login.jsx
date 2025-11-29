@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import "../styles/Auth.css";
 
 export default function Login() {
@@ -23,13 +24,33 @@ export default function Login() {
     setTimeout(() => setLoading(false), 900);
   }, []);
 
-  // ------------------ HANDLE LOGIN ------------------
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!email || !password) return alert("Fill all fields");
+  const navigate = useNavigate();
+  const [error, setError] = useState("");
 
-    console.log("Login Data:", { email, password });
-    alert("Logged in successfully");
+  // ------------------ HANDLE LOGIN ------------------
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!email || !password) {
+      setError("Please fill all fields");
+      return;
+    }
+
+    try {
+      const response = await axios.post("http://localhost:4000/api/auth/login", {
+        email,
+        password,
+      });
+
+      // Store token and user data
+      localStorage.setItem("token", "logged_in");
+      localStorage.setItem("user", JSON.stringify(response.data.user));
+
+      // Redirect to home page
+      navigate("/");
+      window.location.reload(); // Reload to update navbar state
+    } catch (err) {
+      setError(err.response?.data?.error || "Login failed. Please try again.");
+    }
   };
 
   const handleGoogleLogin = () => alert("Google Login Coming Soon");
@@ -56,6 +77,7 @@ export default function Login() {
             <p>Log in to continue your AI-driven financial journey.</p>
 
             <form onSubmit={handleSubmit}>
+              {error && <div className="error-message">{error}</div>}
               <Input value={email} setter={setEmail} placeholder="Email" type="email" />
               <Input value={password} setter={setPassword} placeholder="Password" type="password" />
 
