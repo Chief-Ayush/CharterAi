@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
@@ -22,7 +27,7 @@ function RouteChangeLoader() {
 
   if (!loading) return null;
 
-  const theme = localStorage.getItem('theme') || 'morning';
+  const theme = localStorage.getItem("theme") || "morning";
 
   return (
     <div className={`route-loader theme-${theme}`}>
