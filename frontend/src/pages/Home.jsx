@@ -5,13 +5,13 @@ import "../styles/Home.css";
 
 export default function Home() {
   const [theme, setTheme] = useState(() => {
-    return localStorage.getItem('theme') || "morning";
+    return localStorage.getItem("theme") || "morning";
   });
-  
+
   useEffect(() => {
-    localStorage.setItem('theme', theme);
+    localStorage.setItem("theme", theme);
   }, [theme]);
-  
+
   const themeOrder = ["morning", "evening", "night"];
   const nextTheme = () => {
     const idx = themeOrder.indexOf(theme);
@@ -36,10 +36,13 @@ export default function Home() {
         <div className="hero-text">
           <h1>Your AI Financial Co-Pilot</h1>
           <p>
-            Automate your finances, simulate cashflow, and get instant tax summaries—all with multilingual voice & chat.
+            Automate your finances, simulate cashflow, and get instant tax
+            summaries—all with multilingual voice & chat.
           </p>
           <div className="hero-actions">
-            <button className="btn-hero">Try It Now</button>
+            <Link to="/chatbot" className="btn-hero">
+              Try Chatbot Now
+            </Link>
           </div>
         </div>
         <div className="hero-image">
@@ -54,27 +57,46 @@ export default function Home() {
       <section className="features" id="services">
         <div className="feature-card">
           <h3>Automated Invoice Ingestion</h3>
-          <p>Upload or email invoices—AI extracts, parses, and organizes them for you.</p>
+          <p>
+            Upload or email invoices—AI extracts, parses, and organizes them for
+            you.
+          </p>
         </div>
         <div className="feature-card">
           <h3>Cashflow Simulator</h3>
-          <p>Visualize and simulate your business cashflow with scenario planning tools.</p>
+          <p>
+            Visualize and simulate your business cashflow with scenario planning
+            tools.
+          </p>
         </div>
         <div className="feature-card">
           <h3>Tax Summary Reports</h3>
-          <p>Instantly generate tax-ready summaries and downloadable reports.</p>
+          <p>
+            Instantly generate tax-ready summaries and downloadable reports.
+          </p>
         </div>
         <div className="feature-card">
           <h3>Multilingual Voice & Chat</h3>
-          <p>Interact with your finances using natural language—voice or chat, in your language.</p>
+          <p>
+            Interact with your finances using natural language—voice or chat, in
+            your language.
+          </p>
         </div>
         <div className="feature-card">
           <h3>Demo Video</h3>
-          <p>See it in action! <span style={{color: 'var(--primary)'}}>Watch our quick demo above.</span></p>
+          <p>
+            See it in action!{" "}
+            <span style={{ color: "var(--primary)" }}>
+              Watch our quick demo above.
+            </span>
+          </p>
         </div>
         <div className="feature-card">
           <h3>Secure & Compliant</h3>
-          <p>Bank-level security with full compliance to protect your financial data.</p>
+          <p>
+            Bank-level security with full compliance to protect your financial
+            data.
+          </p>
         </div>
       </section>
 
@@ -84,8 +106,8 @@ export default function Home() {
           <h2>Trusted guidance for financial growth</h2>
 
           <p>
-            Charter.ai empowers MSMEs by automating bookkeeping, forecasting cash flow,
-            and generating tax-ready summaries.
+            Charter.ai empowers MSMEs by automating bookkeeping, forecasting
+            cash flow, and generating tax-ready summaries.
           </p>
 
           <p>

@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
+import Chatbot from "./pages/chatbot";
 import "./App.css";
 
 function RouteChangeLoader() {
@@ -20,7 +26,7 @@ function RouteChangeLoader() {
 
   if (!loading) return null;
 
-  const theme = localStorage.getItem('theme') || 'morning';
+  const theme = localStorage.getItem("theme") || "morning";
 
   return (
     <div className={`route-loader theme-${theme}`}>
@@ -38,6 +44,7 @@ function AppContent() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/chatbot" element={<Chatbot />} />
       </Routes>
     </>
   );
