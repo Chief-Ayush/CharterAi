@@ -21,7 +21,7 @@ class ChessboardErrorBoundary extends React.Component {
         <div className="error-boundary-container">
           <div className="error-boundary-content">
             <h2>⚠️ Something went wrong</h2>
-            <p>The Financial Chessboard encountered an error.</p>
+            <p>The Cashflow Simulator encountered an error.</p>
             <details style={{ whiteSpace: "pre-wrap", marginTop: "20px" }}>
               <summary>Error Details (click to expand)</summary>
               {this.state.error && this.state.error.toString()}

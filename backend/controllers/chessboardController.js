@@ -1,7 +1,7 @@
 const predictionEngine = require("../utils/predictionEngine");
 
 /**
- * Controller for Financial Chessboard API
+ * Controller for Cashflow Simulator API
  */
 
 /**

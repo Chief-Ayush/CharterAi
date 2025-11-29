@@ -1,5 +1,5 @@
 /**
- * Seed Script for Financial Chessboard Testing
+ * Seed Script for Cashflow Simulator Testing
  * Creates sample documents for a test user
  * 
  * Usage: node backend/utils/seedChessboardData.js
@@ -176,7 +176,7 @@ async function seedData() {
     console.log(`   Total Expenses: ₹${totalExpenses.toLocaleString()}`);
     console.log(`   Net: ₹${(totalIncome - totalExpenses).toLocaleString()}`);
     console.log("\n✅ Seed data created successfully!");
-    console.log("🎯 You can now test the Financial Chessboard feature");
+    console.log("🎯 You can now test the Cashflow Simulator feature");
 
     process.exit(0);
   } catch (error) {

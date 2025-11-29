@@ -1,5 +1,5 @@
 /**
- * AUTOMATIC Seed Script for Financial Chessboard
+ * AUTOMATIC Seed Script for Cashflow Simulator
  * Creates BOTH test user AND sample documents
  * No need to manually find user ID!
  * 

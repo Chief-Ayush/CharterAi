@@ -11,6 +11,8 @@ import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
 import FinancialChessboard from "./pages/FinancialChessboard";
 import Chatbot from "./pages/chatbot";
+import TaxSummary from "./pages/TaxSummary";
+import Profile from "./pages/Profile";
 import "./App.css";
 
 function RouteChangeLoader() {
@@ -47,6 +49,8 @@ function AppContent() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/chessboard" element={<FinancialChessboard />} />
         <Route path="/chatbot" element={<Chatbot />} />
+        <Route path="/tax-summary" element={<TaxSummary />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </>
   );
