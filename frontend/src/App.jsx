@@ -9,6 +9,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
+import FinancialChessboard from "./pages/FinancialChessboard";
 import Chatbot from "./pages/chatbot";
 import "./App.css";
 
@@ -44,6 +45,7 @@ function AppContent() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/chessboard" element={<FinancialChessboard />} />
         <Route path="/chatbot" element={<Chatbot />} />
       </Routes>
     </>
