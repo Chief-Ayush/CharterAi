@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
+import { useUser } from "../context/UserContext";
+import { authAPI } from "../utils/api";
 import "../styles/Auth.css";
 
 export default function Login() {
@@ -10,13 +12,20 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(true);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
 
   // ------------------ THEME ------------------
   const themeOrder = ["morning", "evening", "night"];
-  const themeLabels = { morning: "Morning", evening: "Evening", night: "Night" };
+  const themeLabels = {
+    morning: "Morning",
+    evening: "Evening",
+    night: "Night",
+  };
 
   const nextTheme = () => {
-    const newTheme = themeOrder[(themeOrder.indexOf(theme) + 1) % themeOrder.length];
+    const newTheme =
+      themeOrder[(themeOrder.indexOf(theme) + 1) % themeOrder.length];
     localStorage.setItem("theme", newTheme);
     setTheme(newTheme);
   };
@@ -26,9 +35,6 @@ export default function Login() {
     setTimeout(() => setLoading(false), 900);
   }, []);
 
-  const navigate = useNavigate();
-  const [error, setError] = useState("");
-
   // ------------------ HANDLE LOGIN ------------------
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -37,21 +43,18 @@ export default function Login() {
       return;
     }
 
+    setError("");
+    setSubmitting(true);
+
     try {
-      const response = await axios.post("http://localhost:4000/api/auth/login", {
-        email,
-        password,
-      });
-
-      // Store token and user data
-      localStorage.setItem("token", "logged_in");
-      localStorage.setItem("user", JSON.stringify(response.data.user));
-
-      // Redirect to home page
-      navigate("/");
-      window.location.reload(); // Reload to update navbar state
+      const response = await authAPI.login(email, password);
+      loginUser(response.user);
+      navigate("/dashboard");
     } catch (err) {
+      console.error("Login error:", err);
       setError(err.response?.data?.error || "Login failed. Please try again.");
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -71,12 +74,13 @@ export default function Login() {
 
       <div className="auth-form-container">
         <div className="auth-form-wrapper">
-
           <BrandBlock />
 
           <div className="form-content">
             <h2>{t('auth.login.title')}</h2>
             <p>{t('auth.login.subtitle')}</p>
+
+            {error && <div className="error-message">{error}</div>}
 
             <form onSubmit={handleSubmit}>
               {error && <div className="error-message">{error}</div>}
@@ -96,7 +100,6 @@ export default function Login() {
 
             <AuthSwitch text={t('auth.login.noAccount')} link="/signup" linkText={t('auth.login.signupLink')} />
             <SocialIcons />
-
           </div>
         </div>
       </div>
@@ -122,7 +125,7 @@ function LoaderScreen({ theme }) {
 
 function Input({ value, setter, type, placeholder }) {
   return (
-    <input 
+    <input
       type={type}
       placeholder={placeholder}
       value={value}
@@ -133,7 +136,11 @@ function Input({ value, setter, type, placeholder }) {
   );
 }
 
-const Divider = () => <div className="form-divider"><span>or</span></div>;
+const Divider = () => (
+  <div className="form-divider">
+    <span>or</span>
+  </div>
+);
 
 const BrandBlock = () => {
   const { t } = useTranslation();
@@ -147,13 +154,19 @@ const BrandBlock = () => {
 
 const GoogleButton = ({ text, action }) => (
   <button type="button" className="btn-google" onClick={action}>
-    <img src="https://www.gstatic.com/images/branding/product/1x/avatar_circle_blue_512dp.png" 
-         width="18" alt="g" /> {text}
+    <img
+      src="https://www.gstatic.com/images/branding/product/1x/avatar_circle_blue_512dp.png"
+      width="18"
+      alt="g"
+    />{" "}
+    {text}
   </button>
 );
 
 const AuthSwitch = ({ text, link, linkText }) => (
-  <p className="form-switch">{text} <Link to={link}>{linkText}</Link></p>
+  <p className="form-switch">
+    {text} <Link to={link}>{linkText}</Link>
+  </p>
 );
 
 const SocialIcons = () => (

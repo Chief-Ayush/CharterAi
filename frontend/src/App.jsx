@@ -5,6 +5,8 @@ import {
   Route,
   useLocation,
 } from "react-router-dom";
+import { UserProvider } from "./context/UserContext";
+import ProtectedRoute from "./components/ProtectedRoute";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
@@ -59,9 +61,11 @@ function AppContent() {
 function App() {
   return (
     <Router>
-      <div className="app-container">
-        <AppContent />
-      </div>
+      <UserProvider>
+        <div className="app-container">
+          <AppContent />
+        </div>
+      </UserProvider>
     </Router>
   );
 }
