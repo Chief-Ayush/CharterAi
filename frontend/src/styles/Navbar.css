@@ -22,6 +22,38 @@
   position: relative;
 }
 
+.language-selector {
+  position: relative;
+}
+
+.language-dropdown {
+  padding: 11px 20px;
+  border-radius: 24px;
+  font-size: 15px;
+  border: 2px solid var(--primary);
+  background: transparent;
+  color: var(--primary);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  height: 44px;
+  font-family: 'Inter', Arial, sans-serif;
+}
+
+.language-dropdown:hover {
+  background: var(--primary);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px var(--shadow-color);
+}
+
+.language-dropdown option {
+  background: var(--header-bg);
+  color: var(--text-color);
+  padding: 10px;
+  font-weight: 600;
+}
+
 .user-dropdown {
   position: relative;
 }

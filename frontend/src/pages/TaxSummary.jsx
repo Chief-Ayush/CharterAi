@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import Navbar from "../components/Navbar";
 import "../styles/TaxSummary.css";
 
 export default function TaxSummary() {
+  const { t } = useTranslation();
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem("theme") || "morning";
   });
@@ -23,14 +25,14 @@ export default function TaxSummary() {
       
       <div className="tax-summary-content">
         <div className="tax-summary-header">
-          <h1>Tax Summary</h1>
-          <p className="header-subtitle">View and download your tax reports</p>
+          <h1>{t('taxSummary.title')}</h1>
+          <p className="header-subtitle">{t('taxSummary.subtitle')}</p>
         </div>
 
         <div className="tax-summary-body">
           <div className="info-card">
-            <h2>Tax Summary Feature Coming Soon</h2>
-            <p>This page will display comprehensive tax summaries and reports.</p>
+            <h2>{t('taxSummary.comingSoon')}</h2>
+            <p>{t('taxSummary.description')}</p>
           </div>
         </div>
       </div>

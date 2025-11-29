@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import axios from "axios";
 import Navbar from "../components/Navbar";
 import MoveTemplatesPanel from "../components/chessboard/MoveTemplatesPanel";
@@ -8,6 +9,7 @@ import ResultPanel from "../components/chessboard/ResultPanel";
 import "../styles/Chessboard.css";
 
 export default function FinancialChessboard() {
+  const { t } = useTranslation();
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem("theme") || "morning";
   });
@@ -197,10 +199,9 @@ export default function FinancialChessboard() {
         {/* Header */}
         <div className="chessboard-header">
           <div>
-            <h1>Financial Chessboard</h1>
+            <h1>{t('cashflowSimulator.title')}</h1>
             <p>
-              Drag and drop financial moves to simulate cashflow scenarios and predict
-              outcomes
+              {t('cashflowSimulator.subtitle')}
             </p>
           </div>
           <div className="chessboard-actions">

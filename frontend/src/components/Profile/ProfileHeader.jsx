@@ -1,6 +1,8 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 export default function ProfileHeader({ user }) {
+  const { t } = useTranslation();
   return (
     <div className="profile-card" style={{ marginBottom: "40px" }}>
       <div style={{ display: "flex", alignItems: "center", gap: "32px" }}>
@@ -41,7 +43,7 @@ export default function ProfileHeader({ user }) {
           }}>
             <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
               <span style={{ fontSize: "16px", fontWeight: "600", color: "var(--secondary-text)" }}>
-                Account Type:
+                {t('profile.accountType')}:
               </span>
               <span style={{ 
                 padding: "6px 14px", 
@@ -55,14 +57,14 @@ export default function ProfileHeader({ user }) {
               </span>
             </div>
             <div style={{ fontSize: "16px", color: "var(--secondary-text)" }}>
-              <span style={{ fontWeight: "600" }}>Country:</span> {user.country}
+              <span style={{ fontWeight: "600" }}>{t('profile.country')}:</span> {user.country}
             </div>
             <div style={{ fontSize: "16px", color: "var(--secondary-text)" }}>
-              <span style={{ fontWeight: "600" }}>Timezone:</span> {user.timezone}
+              <span style={{ fontWeight: "600" }}>{t('profile.timezone')}:</span> {user.timezone}
             </div>
           </div>
           <button className="btn-profile btn-profile-primary">
-            Edit Profile
+            {t('profile.editProfile')}
           </button>
         </div>
       </div>

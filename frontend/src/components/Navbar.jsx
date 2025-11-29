@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import LanguageSelector from "./LanguageSelector";
 import "../styles/Navbar.css";
 
 export default function Navbar({ theme, onThemeToggle }) {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   
@@ -31,12 +34,13 @@ export default function Navbar({ theme, onThemeToggle }) {
       <div className="logo" onClick={() => navigate("/")}>Charter.ai</div>
 
       <nav className="nav-links">
-        <Link to="/">Home</Link>
-        <Link to="/dashboard">Dashboard</Link>
-        <Link to="/tax-summary">Tax Summary</Link>
+        <Link to="/">{t('navbar.home')}</Link>
+        <Link to="/dashboard">{t('navbar.dashboard')}</Link>
+        <Link to="/tax-summary">{t('navbar.taxSummary')}</Link>
       </nav>
 
       <div className="header-actions">
+        <LanguageSelector />
         {isLoggedIn ? (
           <div className="user-dropdown">
             <button 
@@ -54,14 +58,14 @@ export default function Navbar({ theme, onThemeToggle }) {
                   onClick={() => setShowDropdown(false)}
                 >
                   <span className="dropdown-icon">◆</span>
-                  Profile
+                  {t('navbar.profile')}
                 </Link>
                 <button 
                   className="dropdown-item" 
                   onClick={onThemeToggle}
                 >
                   <span className="dropdown-icon">◐</span>
-                  Theme: {themeLabels[theme]}
+                  {t('navbar.theme')}: {themeLabels[theme]}
                 </button>
                 <div className="dropdown-divider"></div>
                 <button 
@@ -69,13 +73,13 @@ export default function Navbar({ theme, onThemeToggle }) {
                   onClick={handleLogout}
                 >
                   <span className="dropdown-icon">×</span>
-                  Logout
+                  {t('navbar.logout')}
                 </button>
               </div>
             )}
           </div>
         ) : (
-          <Link to="/login" className="btn-primary">Login</Link>
+          <Link to="/login" className="btn-primary">{t('common.login')}</Link>
         )}
       </div>
     </header>

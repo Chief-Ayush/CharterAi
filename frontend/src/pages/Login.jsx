@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import axios from "axios";
 import "../styles/Auth.css";
 
 export default function Login() {
+  const { t } = useTranslation();
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "morning");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -63,7 +65,7 @@ export default function Login() {
       <BackgroundShapes />
 
       <div className="auth-header-bar">
-        <Link to="/" className="back-btn">← Home</Link>
+        <Link to="/" className="back-btn">← {t('auth.backToHome')}</Link>
         <button className="theme-toggle-btn" onClick={nextTheme}>{themeLabels[theme]}</button>
       </div>
 
@@ -73,26 +75,26 @@ export default function Login() {
           <BrandBlock />
 
           <div className="form-content">
-            <h2>Welcome Back</h2>
-            <p>Log in to continue your AI-driven financial journey.</p>
+            <h2>{t('auth.login.title')}</h2>
+            <p>{t('auth.login.subtitle')}</p>
 
             <form onSubmit={handleSubmit}>
               {error && <div className="error-message">{error}</div>}
-              <Input value={email} setter={setEmail} placeholder="Email" type="email" />
-              <Input value={password} setter={setPassword} placeholder="Password" type="password" />
+              <Input value={email} setter={setEmail} placeholder={t('auth.login.email')} type="email" />
+              <Input value={password} setter={setPassword} placeholder={t('auth.login.password')} type="password" />
 
               <div className="form-footer-links">
-                <Link to="/forgot-password" className="forgot-link">Forgot password?</Link>
+                <Link to="/forgot-password" className="forgot-link">{t('auth.login.forgotPassword')}</Link>
               </div>
 
               <Divider />
 
-              <GoogleButton text="Login with Google" action={handleGoogleLogin} />
+              <GoogleButton text={t('auth.login.loginWithGoogle')} action={handleGoogleLogin} />
 
-              <button type="submit" className="btn-submit">Login</button>
+              <button type="submit" className="btn-submit">{t('auth.login.loginButton')}</button>
             </form>
 
-            <AuthSwitch text="Don't have an account?" link="/signup" linkText="Sign Up" />
+            <AuthSwitch text={t('auth.login.noAccount')} link="/signup" linkText={t('auth.login.signupLink')} />
             <SocialIcons />
 
           </div>
@@ -105,13 +107,14 @@ export default function Login() {
 /* ----- Reusable Components ----- */
 
 function LoaderScreen({ theme }) {
+  const { t } = useTranslation();
   return (
     <div className={`auth-loader theme-${theme}`}>
       <div className="loader-content">
         {theme === "morning" && <div className="loader-sun"></div>}
         {theme === "evening" && <div className="loader-evening"></div>}
         {theme === "night" && <div className="loader-night"></div>}
-        <p>Loading your experience...</p>
+        <p>{t('auth.loadingExperience')}</p>
       </div>
     </div>
   );
@@ -132,12 +135,15 @@ function Input({ value, setter, type, placeholder }) {
 
 const Divider = () => <div className="form-divider"><span>or</span></div>;
 
-const BrandBlock = () => (
-  <div className="form-brand">
-    <h1>Charter.ai</h1>
-    <p>Your AI Financial Co-Pilot</p>
-  </div>
-);
+const BrandBlock = () => {
+  const { t } = useTranslation();
+  return (
+    <div className="form-brand">
+      <h1>Charter.ai</h1>
+      <p>{t('home.subtitle')}</p>
+    </div>
+  );
+};
 
 const GoogleButton = ({ text, action }) => (
   <button type="button" className="btn-google" onClick={action}>

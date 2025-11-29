@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import Navbar from "../components/Navbar";
 import ProfileHeader from "../components/Profile/ProfileHeader";
 import PersonalInfoCard from "../components/Profile/PersonalInfoCard";
@@ -11,6 +12,7 @@ import SecurityCard from "../components/Profile/SecurityCard";
 import "../styles/Profile.css";
 
 export default function Profile() {
+  const { t } = useTranslation();
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem("theme") || "morning";
   });
@@ -71,8 +73,8 @@ export default function Profile() {
 
       <div className="profile-content">
         <div className="profile-header-section">
-          <h1>Account Profile</h1>
-          <p className="profile-subtitle">Manage your account information and preferences</p>
+          <h1>{t('profile.title')}</h1>
+          <p className="profile-subtitle">{t('profile.subtitle')}</p>
         </div>
 
         <ProfileHeader user={user} />
