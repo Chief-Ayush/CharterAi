@@ -43,7 +43,7 @@ export default function Navbar({ theme, onThemeToggle }) {
               className="btn-user" 
               onClick={() => setShowDropdown(!showDropdown)}
             >
-              <span className="user-icon">👤</span>
+              <span className="user-icon">●</span>
               <span className="dropdown-arrow">▼</span>
             </button>
             {showDropdown && (
@@ -53,14 +53,14 @@ export default function Navbar({ theme, onThemeToggle }) {
                   className="dropdown-item"
                   onClick={() => setShowDropdown(false)}
                 >
-                  <span className="dropdown-icon">👤</span>
+                  <span className="dropdown-icon">◆</span>
                   Profile
                 </Link>
                 <button 
                   className="dropdown-item" 
                   onClick={onThemeToggle}
                 >
-                  <span className="dropdown-icon">🎨</span>
+                  <span className="dropdown-icon">◐</span>
                   Theme: {themeLabels[theme]}
                 </button>
                 <div className="dropdown-divider"></div>
@@ -68,7 +68,7 @@ export default function Navbar({ theme, onThemeToggle }) {
                   className="dropdown-item logout" 
                   onClick={handleLogout}
                 >
-                  <span className="dropdown-icon">🚪</span>
+                  <span className="dropdown-icon">×</span>
                   Logout
                 </button>
               </div>

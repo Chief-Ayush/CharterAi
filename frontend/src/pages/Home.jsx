@@ -40,9 +40,9 @@ export default function Home() {
             summaries—all with multilingual voice & chat.
           </p>
           <div className="hero-actions">
-            <Link to="/chatbot" className="btn-hero">💬 AI Chatbot</Link>
-            <Link to="/chessboard" className="btn-hero btn-hero-secondary">♟️ Cashflow Simulator</Link>
-            <Link to="/dashboard" className="btn-hero btn-hero-tertiary">📊 Dashboard</Link>
+            <Link to="/chatbot" className="btn-hero">AI Chatbot</Link>
+            <Link to="/chessboard" className="btn-hero btn-hero-secondary">Cashflow Simulator</Link>
+            <Link to="/dashboard" className="btn-hero btn-hero-tertiary">Dashboard</Link>
           </div>
         </div>
         <div className="hero-image">
