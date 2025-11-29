@@ -1,0 +1,209 @@
+{
+  "common": {
+    "login": "लॉगिन",
+    "logout": "लॉगआउट",
+    "signup": "साइन अप",
+    "home": "होम",
+    "dashboard": "डैशबोर्ड",
+    "profile": "प्रोफ़ाइल",
+    "documents": "दस्तावेज़",
+    "settings": "सेटिंग्स",
+    "preferences": "प्राथमिकताएँ",
+    "security": "सुरक्षा",
+    "theme": "थीम",
+    "edit": "संपादित करें",
+    "save": "सहेजें",
+    "cancel": "रद्द करें",
+    "delete": "हटाएं",
+    "upload": "अपलोड करें",
+    "view": "देखें",
+    "download": "डाउनलोड करें",
+    "search": "खोजें",
+    "filter": "फ़िल्टर",
+    "export": "निर्यात",
+    "loading": "लोड हो रहा है",
+    "error": "त्रुटि",
+    "success": "सफलता"
+  },
+  "navbar": {
+    "home": "होम",
+    "dashboard": "डैशबोर्ड",
+    "taxSummary": "कर सारांश",
+    "profile": "प्रोफ़ाइल",
+    "theme": "थीम",
+    "logout": "लॉगआउट"
+  },
+  "home": {
+    "title": "आपका AI वित्तीय सह-पायलट",
+    "subtitle": "अपने वित्त को स्वचालित करें, कैशफ्लो का अनुकरण करें, और तत्काल कर सारांश प्राप्त करें—सब बहुभाषी आवाज और चैट के साथ।",
+    "aiChatbot": "AI चैटबॉट",
+    "cashflowSimulator": "कैशफ्लो सिम्युलेटर",
+    "dashboard": "डैशबोर्ड",
+    "features": {
+      "invoiceIngestion": {
+        "title": "स्वचालित चालान प्रवेश",
+        "description": "चालान अपलोड करें या ईमेल करें—AI उन्हें निकालता, पार्स करता और व्यवस्थित करता है।"
+      },
+      "cashflowSimulator": {
+        "title": "कैशफ्लो सिम्युलेटर",
+        "description": "परिदृश्य योजना उपकरणों के साथ अपने व्यवसाय के कैशफ्लो को देखें और अनुकरण करें।"
+      },
+      "taxSummary": {
+        "title": "कर सारांश रिपोर्ट",
+        "description": "तुरंत कर-तैयार सारांश और डाउनलोड करने योग्य रिपोर्ट उत्पन्न करें।"
+      },
+      "multilingualChat": {
+        "title": "बहुभाषी आवाज और चैट",
+        "description": "प्राकृतिक भाषा का उपयोग करके अपने वित्त के साथ बातचीत करें—आवाज या चैट, आपकी भाषा में।"
+      },
+      "demoVideo": {
+        "title": "डेमो वीडियो",
+        "description": "इसे क्रिया में देखें! ऊपर हमारा त्वरित डेमो देखें।"
+      },
+      "security": {
+        "title": "सुरक्षित और अनुपालन",
+        "description": "आपके वित्तीय डेटा की सुरक्षा के लिए बैंक-स्तर की सुरक्षा और पूर्ण अनुपालन।"
+      }
+    },
+    "about": {
+      "title": "वित्तीय विकास के लिए विश्वसनीय मार्गदर्शन",
+      "description1": "Charter.ai बहीखाता को स्वचालित करके, नकदी प्रवाह का पूर्वानुमान लगाकर और कर-तैयार सारांश उत्पन्न करके MSME को सशक्त बनाता है।",
+      "description2": "बहुभाषी, प्राकृतिक भाषा इंटरफ़ेस के साथ सब कुछ एक्सेस करें।"
+    },
+    "footer": {
+      "tagline": "MSME सशक्तिकरण के लिए आपका AI वित्तीय सह-पायलट",
+      "contact": "संपर्क",
+      "copyright": "MSME सशक्तिकरण के लिए निर्मित"
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "वापस स्वागत है",
+      "subtitle": "अपनी AI-संचालित वित्तीय यात्रा जारी रखने के लिए लॉगिन करें।",
+      "email": "ईमेल",
+      "password": "पासवर्ड",
+      "forgotPassword": "पासवर्ड भूल गए?",
+      "loginButton": "लॉगिन",
+      "loginWithGoogle": "Google के साथ लॉगिन करें",
+      "noAccount": "खाता नहीं है?",
+      "signupLink": "साइन अप करें"
+    },
+    "signup": {
+      "title": "खाता बनाएं",
+      "subtitle": "Charter.ai में शामिल हों और अपनी वित्तीय यात्रा शुरू करें।",
+      "fullName": "पूरा नाम",
+      "email": "ईमेल",
+      "password": "पासवर्ड",
+      "signupButton": "साइन अप",
+      "signupWithGoogle": "Google के साथ साइन अप करें",
+      "haveAccount": "पहले से खाता है?",
+      "loginLink": "लॉगिन करें"
+    },
+    "backToHome": "होम",
+    "loadingExperience": "आपका अनुभव लोड हो रहा है..."
+  },
+  "dashboard": {
+    "title": "डैशबोर्ड",
+    "kpi": {
+      "totalRevenue": "कुल राजस्व",
+      "totalExpenses": "कुल व्यय",
+      "netProfit": "शुद्ध लाभ",
+      "gstCollected": "GST एकत्रित"
+    },
+    "charts": {
+      "incomeExpense": "आय बनाम व्यय प्रवृत्ति",
+      "revenueSegments": "खंड द्वारा राजस्व",
+      "gstOverview": "GST अवलोकन"
+    },
+    "tables": {
+      "recentTransactions": "हाल के लेनदेन",
+      "topVendors": "शीर्ष विक्रेता"
+    },
+    "alerts": {
+      "title": "अलर्ट और रिमाइंडर"
+    }
+  },
+  "profile": {
+    "title": "खाता प्रोफ़ाइल",
+    "subtitle": "अपनी खाता जानकारी और प्राथमिकताएँ प्रबंधित करें",
+    "editProfile": "प्रोफ़ाइल संपादित करें",
+    "accountType": "खाता प्रकार",
+    "country": "देश",
+    "timezone": "समय क्षेत्र",
+    "personalInfo": {
+      "title": "व्यक्तिगत जानकारी",
+      "email": "ईमेल पता",
+      "phone": "फ़ोन नंबर",
+      "country": "देश",
+      "timezone": "समय क्षेत्र",
+      "dateJoined": "शामिल होने की तिथि"
+    },
+    "businessInfo": {
+      "title": "व्यवसाय जानकारी",
+      "businessName": "व्यवसाय का नाम",
+      "businessType": "व्यवसाय प्रकार",
+      "businessOutline": "व्यवसाय रूपरेखा",
+      "segments": "खंड",
+      "currency": "मुद्रा",
+      "numberOfEmployees": "कर्मचारियों की संख्या"
+    },
+    "gstInfo": {
+      "title": "GST जानकारी",
+      "gstin": "GSTIN",
+      "filingPeriod": "GST फाइलिंग अवधि",
+      "scheme": "GST योजना"
+    },
+    "documents": {
+      "title": "व्यवसाय दस्तावेज़",
+      "uploaded": "अपलोड किया गया",
+      "uploadNew": "नया दस्तावेज़ अपलोड करें"
+    },
+    "ocrOverview": {
+      "title": "OCR दस्तावेज़ अवलोकन",
+      "totalDocuments": "कुल दस्तावेज़",
+      "totalInvoices": "कुल चालान",
+      "totalReceipts": "कुल रसीदें",
+      "pendingReview": "समीक्षा लंबित",
+      "approved": "स्वीकृत दस्तावेज़"
+    },
+    "preferences": {
+      "title": "प्राथमिकताएँ",
+      "currency": "मुद्रा प्राथमिकता",
+      "emailNotifications": "ईमेल सूचनाएं",
+      "smsNotifications": "SMS सूचनाएं",
+      "themePreference": "थीम प्राथमिकता",
+      "editPreferences": "प्राथमिकताएँ संपादित करें",
+      "enabled": "सक्षम",
+      "disabled": "अक्षम",
+      "auto": "स्वचालित (सिस्टम)"
+    },
+    "security": {
+      "title": "सुरक्षा",
+      "password": "पासवर्ड",
+      "lastPasswordChange": "अंतिम पासवर्ड परिवर्तन",
+      "twoFactor": "दो-कारक प्रमाणीकरण",
+      "activeSessions": "सक्रिय सत्र",
+      "changePassword": "पासवर्ड बदलें",
+      "viewSessions": "सत्र देखें",
+      "devices": "उपकरण",
+      "daysAgo": "दिन पहले"
+    }
+  },
+  "cashflowSimulator": {
+    "title": "कैशफ्लो सिम्युलेटर",
+    "subtitle": "अपने वित्तीय चालों का अनुकरण करें और परिणामों की भविष्यवाणी करें"
+  },
+  "taxSummary": {
+    "title": "कर सारांश",
+    "subtitle": "अपनी कर रिपोर्ट देखें और डाउनलोड करें",
+    "comingSoon": "कर सारांश सुविधा जल्द आ रही है",
+    "description": "यह पृष्ठ व्यापक कर सारांश और रिपोर्ट प्रदर्शित करेगा।"
+  },
+  "language": {
+    "select": "भाषा चुनें",
+    "english": "English",
+    "hindi": "हिन्दी",
+    "gujarati": "ગુજરાતી",
+    "marathi": "मराठी"
+  }
+}

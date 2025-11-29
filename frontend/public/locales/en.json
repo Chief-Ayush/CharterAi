@@ -1,0 +1,209 @@
+{
+  "common": {
+    "login": "Login",
+    "logout": "Logout",
+    "signup": "Sign Up",
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "profile": "Profile",
+    "documents": "Documents",
+    "settings": "Settings",
+    "preferences": "Preferences",
+    "security": "Security",
+    "theme": "Theme",
+    "edit": "Edit",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "upload": "Upload",
+    "view": "View",
+    "download": "Download",
+    "search": "Search",
+    "filter": "Filter",
+    "export": "Export",
+    "loading": "Loading",
+    "error": "Error",
+    "success": "Success"
+  },
+  "navbar": {
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "taxSummary": "Tax Summary",
+    "profile": "Profile",
+    "theme": "Theme",
+    "logout": "Logout"
+  },
+  "home": {
+    "title": "Your AI Financial Co-Pilot",
+    "subtitle": "Automate your finances, simulate cashflow, and get instant tax summaries—all with multilingual voice & chat.",
+    "aiChatbot": "AI Chatbot",
+    "cashflowSimulator": "Cashflow Simulator",
+    "dashboard": "Dashboard",
+    "features": {
+      "invoiceIngestion": {
+        "title": "Automated Invoice Ingestion",
+        "description": "Upload or email invoices—AI extracts, parses, and organizes them for you."
+      },
+      "cashflowSimulator": {
+        "title": "Cashflow Simulator",
+        "description": "Visualize and simulate your business cashflow with scenario planning tools."
+      },
+      "taxSummary": {
+        "title": "Tax Summary Reports",
+        "description": "Instantly generate tax-ready summaries and downloadable reports."
+      },
+      "multilingualChat": {
+        "title": "Multilingual Voice & Chat",
+        "description": "Interact with your finances using natural language—voice or chat, in your language."
+      },
+      "demoVideo": {
+        "title": "Demo Video",
+        "description": "See it in action! Watch our quick demo above."
+      },
+      "security": {
+        "title": "Secure & Compliant",
+        "description": "Bank-level security with full compliance to protect your financial data."
+      }
+    },
+    "about": {
+      "title": "Trusted guidance for financial growth",
+      "description1": "Charter.ai empowers MSMEs by automating bookkeeping, forecasting cash flow, and generating tax-ready summaries.",
+      "description2": "Access everything with a multilingual, natural language interface."
+    },
+    "footer": {
+      "tagline": "Your AI Financial Co-Pilot for MSME Empowerment",
+      "contact": "Contact",
+      "copyright": "Built for MSME Empowerment"
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Welcome Back",
+      "subtitle": "Log in to continue your AI-driven financial journey.",
+      "email": "Email",
+      "password": "Password",
+      "forgotPassword": "Forgot password?",
+      "loginButton": "Login",
+      "loginWithGoogle": "Login with Google",
+      "noAccount": "Don't have an account?",
+      "signupLink": "Sign Up"
+    },
+    "signup": {
+      "title": "Create Account",
+      "subtitle": "Join Charter.ai and start your financial journey.",
+      "fullName": "Full Name",
+      "email": "Email",
+      "password": "Password",
+      "signupButton": "Sign Up",
+      "signupWithGoogle": "Sign up with Google",
+      "haveAccount": "Already have an account?",
+      "loginLink": "Login"
+    },
+    "backToHome": "Home",
+    "loadingExperience": "Loading your experience..."
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "kpi": {
+      "totalRevenue": "Total Revenue",
+      "totalExpenses": "Total Expenses",
+      "netProfit": "Net Profit",
+      "gstCollected": "GST Collected"
+    },
+    "charts": {
+      "incomeExpense": "Income vs Expense Trend",
+      "revenueSegments": "Revenue by Segment",
+      "gstOverview": "GST Overview"
+    },
+    "tables": {
+      "recentTransactions": "Recent Transactions",
+      "topVendors": "Top Vendors"
+    },
+    "alerts": {
+      "title": "Alerts & Reminders"
+    }
+  },
+  "profile": {
+    "title": "Account Profile",
+    "subtitle": "Manage your account information and preferences",
+    "editProfile": "Edit Profile",
+    "accountType": "Account Type",
+    "country": "Country",
+    "timezone": "Timezone",
+    "personalInfo": {
+      "title": "Personal Information",
+      "email": "Email Address",
+      "phone": "Phone Number",
+      "country": "Country",
+      "timezone": "Timezone",
+      "dateJoined": "Date Joined"
+    },
+    "businessInfo": {
+      "title": "Business Information",
+      "businessName": "Business Name",
+      "businessType": "Business Type",
+      "businessOutline": "Business Outline",
+      "segments": "Segments",
+      "currency": "Currency",
+      "numberOfEmployees": "Number of Employees"
+    },
+    "gstInfo": {
+      "title": "GST Information",
+      "gstin": "GSTIN",
+      "filingPeriod": "GST Filing Period",
+      "scheme": "GST Scheme"
+    },
+    "documents": {
+      "title": "Business Documents",
+      "uploaded": "Uploaded",
+      "uploadNew": "Upload New Document"
+    },
+    "ocrOverview": {
+      "title": "OCR Document Overview",
+      "totalDocuments": "Total Documents",
+      "totalInvoices": "Total Invoices",
+      "totalReceipts": "Total Receipts",
+      "pendingReview": "Pending Review",
+      "approved": "Approved Documents"
+    },
+    "preferences": {
+      "title": "Preferences",
+      "currency": "Currency Preference",
+      "emailNotifications": "Email Notifications",
+      "smsNotifications": "SMS Notifications",
+      "themePreference": "Theme Preference",
+      "editPreferences": "Edit Preferences",
+      "enabled": "Enabled",
+      "disabled": "Disabled",
+      "auto": "Auto (System)"
+    },
+    "security": {
+      "title": "Security",
+      "password": "Password",
+      "lastPasswordChange": "Last Password Change",
+      "twoFactor": "Two-Factor Authentication",
+      "activeSessions": "Active Sessions",
+      "changePassword": "Change Password",
+      "viewSessions": "View Sessions",
+      "devices": "devices",
+      "daysAgo": "days ago"
+    }
+  },
+  "cashflowSimulator": {
+    "title": "Cashflow Simulator",
+    "subtitle": "Simulate your financial moves and predict outcomes"
+  },
+  "taxSummary": {
+    "title": "Tax Summary",
+    "subtitle": "View and download your tax reports",
+    "comingSoon": "Tax Summary Feature Coming Soon",
+    "description": "This page will display comprehensive tax summaries and reports."
+  },
+  "language": {
+    "select": "Select Language",
+    "english": "English",
+    "hindi": "हिन्दी",
+    "gujarati": "ગુજરાતી",
+    "marathi": "मराठी"
+  }
+}

@@ -6,7 +6,7 @@ export default function GraphIncomeExpense({ data }) {
   return (
     <div className="dashboard-card">
       <h3 className="card-title">Income vs Expense Trend</h3>
-      <ResponsiveContainer width="100%" height={300}>
+      <ResponsiveContainer width="100%" height={350}>
         <LineChart data={data}>
           <CartesianGrid strokeDasharray="3 3" stroke="var(--feature-border)" />
           <XAxis dataKey="month" stroke="var(--text-color)" />

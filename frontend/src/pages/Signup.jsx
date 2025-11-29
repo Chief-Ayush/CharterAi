@@ -1,20 +1,43 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import axios from "axios";
 import "../styles/Auth.css";
 
 export default function Signup() {
+  const { t } = useTranslation();
+  const navigate = useNavigate();
+  const { login: loginUser } = useUser();
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "morning");
   const [name, setName] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
+  const [step, setStep] = useState(1);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [phone, setPhone] = useState("");
+  const [businessName, setBusinessName] = useState("");
+  const [businessType, setBusinessType] = useState("");
+  const [country, setCountry] = useState("India");
+  const [timezone, setTimezone] = useState("Asia/Kolkata");
+  const [currency, setCurrency] = useState("INR");
+  const [gstin, setGstin] = useState("");
+  const [gstFilingPeriod, setGstFilingPeriod] = useState("not_applicable");
+  const [gstScheme, setGstScheme] = useState("not_applicable");
+  const [businessDocs, setBusinessDocs] = useState([]);
 
   // ------------------ THEME ------------------
   const themeOrder = ["morning", "evening", "night"];
-  const themeLabels = { morning: "Morning", evening: "Evening", night: "Night" };
+  const themeLabels = {
+    morning: "Morning",
+    evening: "Evening",
+    night: "Night",
+  };
 
   const nextTheme = () => {
-    const newTheme = themeOrder[(themeOrder.indexOf(theme) + 1) % themeOrder.length];
+    const newTheme =
+      themeOrder[(themeOrder.indexOf(theme) + 1) % themeOrder.length];
     localStorage.setItem("theme", newTheme);
     setTheme(newTheme);
   };
@@ -25,12 +48,95 @@ export default function Signup() {
   }, []);
 
   // ------------------ HANDLE SIGNUP ------------------
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!name || !email || !password) return alert("Fill all fields");
+  const handleNext = () => {
+    setError("");
 
-    console.log("Signup Data:", { name, email, password });
-    alert("Account created successfully");
+    if (step === 1) {
+      if (!email || !password) {
+        setError("Email and password are required");
+        return;
+      }
+      if (password.length < 6) {
+        setError("Password must be at least 6 characters");
+        return;
+      }
+    } else if (step === 2) {
+      if (!businessName || !country || !timezone || !currency) {
+        setError("Please fill all required fields");
+        return;
+      }
+    }
+
+    setStep(step + 1);
+  };
+
+  const handleBack = () => {
+    setError("");
+    setStep(step - 1);
+  };
+
+  const handleFileChange = (e) => {
+    const files = Array.from(e.target.files);
+    if (files.length > 5) {
+      setError("Maximum 5 files allowed");
+      return;
+    }
+    setBusinessDocs(files);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+    setSubmitting(true);
+
+    try {
+      let response;
+
+      if (businessDocs.length > 0) {
+        // Use FormData for file upload
+        const formData = new FormData();
+        formData.append("email", email);
+        formData.append("password", password);
+        formData.append("phone", phone);
+        formData.append("businessName", businessName);
+        formData.append("businessType", businessType);
+        formData.append("timezone", timezone);
+        formData.append("country", country);
+        formData.append("currency", currency);
+        formData.append("gstin", gstin);
+        formData.append("gstFilingPeriod", gstFilingPeriod);
+        formData.append("gstScheme", gstScheme);
+
+        businessDocs.forEach((file) => {
+          formData.append("businessDocs", file);
+        });
+
+        response = await authAPI.signupWithFiles(formData);
+      } else {
+        // Use JSON for no files
+        response = await authAPI.signup({
+          email,
+          password,
+          phone,
+          businessName,
+          businessType,
+          timezone,
+          country,
+          currency,
+          gstin,
+          gstFilingPeriod,
+          gstScheme,
+        });
+      }
+
+      loginUser(response.user);
+      navigate("/dashboard");
+    } catch (err) {
+      console.error("Signup error:", err);
+      setError(err.response?.data?.error || "Signup failed. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const handleGoogleSignup = () => alert("Google Signup Coming Soon");
@@ -49,17 +155,18 @@ export default function Signup() {
 
       <div className="auth-form-container">
         <div className="auth-form-wrapper">
-
           <BrandBlock />
 
           <div className="form-content">
-            <h2>Create Account</h2>
-            <p>Join Charter.ai and start your financial journey.</p>
+            <h2>{t('auth.signup.title')}</h2>
+            <p>{t('auth.signup.subtitle')}</p>
 
             <form onSubmit={handleSubmit}>
-              <Input value={name} setter={setName} placeholder="Full Name" type="text" />
-              <Input value={email} setter={setEmail} placeholder="Email" type="email" />
-              <Input value={password} setter={setPassword} placeholder="Password" type="password" />
+              {error && <div className="error-message">{error}</div>}
+              {success && <div className="success-message">{success}</div>}
+              <Input value={name} setter={setName} placeholder={t('auth.signup.fullName')} type="text" />
+              <Input value={email} setter={setEmail} placeholder={t('auth.signup.email')} type="email" />
+              <Input value={password} setter={setPassword} placeholder={t('auth.signup.password')} type="password" />
 
               <Divider />
 
@@ -68,9 +175,8 @@ export default function Signup() {
               <button type="submit" className="btn-submit">Sign Up</button>
             </form>
 
-            <AuthSwitch text="Already have an account?" link="/login" linkText="Login" />
+            <AuthSwitch text={t('auth.signup.haveAccount')} link="/login" linkText={t('auth.signup.loginLink')} />
             <SocialIcons />
-
           </div>
         </div>
       </div>
@@ -81,13 +187,14 @@ export default function Signup() {
 /* ----- Reusable Components ----- */
 
 function LoaderScreen({ theme }) {
+  const { t } = useTranslation();
   return (
     <div className={`auth-loader theme-${theme}`}>
       <div className="loader-content">
         {theme === "morning" && <div className="loader-sun"></div>}
         {theme === "evening" && <div className="loader-evening"></div>}
         {theme === "night" && <div className="loader-night"></div>}
-        <p>Loading your experience...</p>
+        <p>{t('auth.loadingExperience')}</p>
       </div>
     </div>
   );
@@ -95,35 +202,62 @@ function LoaderScreen({ theme }) {
 
 function Input({ value, setter, type, placeholder }) {
   return (
-    <input 
+    <input
       type={type}
       placeholder={placeholder}
       value={value}
       onChange={(e) => setter(e.target.value)}
       className="form-input"
-      required
     />
   );
 }
 
-const Divider = () => <div className="form-divider"><span>or</span></div>;
+function Select({ value, setter, label, children }) {
+  return (
+    <div className="form-group">
+      <label className="form-label">{label}</label>
+      <select
+        value={value}
+        onChange={(e) => setter(e.target.value)}
+        className="form-input"
+      >
+        {children}
+      </select>
+    </div>
+  );
+}
 
-const BrandBlock = () => (
-  <div className="form-brand">
-    <h1>Charter.ai</h1>
-    <p>Your AI Financial Co-Pilot</p>
+const Divider = () => (
+  <div className="form-divider">
+    <span>or</span>
   </div>
 );
 
+const BrandBlock = () => {
+  const { t } = useTranslation();
+  return (
+    <div className="form-brand">
+      <h1>Charter.ai</h1>
+      <p>{t('home.subtitle')}</p>
+    </div>
+  );
+};
+
 const GoogleButton = ({ text, action }) => (
   <button type="button" className="btn-google" onClick={action}>
-    <img src="https://www.gstatic.com/images/branding/product/1x/avatar_circle_blue_512dp.png" 
-         width="18" alt="g" /> {text}
+    <img
+      src="https://www.gstatic.com/images/branding/product/1x/avatar_circle_blue_512dp.png"
+      width="18"
+      alt="g"
+    />{" "}
+    {text}
   </button>
 );
 
 const AuthSwitch = ({ text, link, linkText }) => (
-  <p className="form-switch">{text} <Link to={link}>{linkText}</Link></p>
+  <p className="form-switch">
+    {text} <Link to={link}>{linkText}</Link>
+  </p>
 );
 
 const SocialIcons = () => (

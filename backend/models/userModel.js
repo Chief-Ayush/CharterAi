@@ -7,7 +7,6 @@ const UserSchema = new Schema({
     required: true,
     lowercase: true,
     trim: true,
-    index: true,
   },
   phone: {
     type: String,
@@ -42,6 +41,8 @@ const UserSchema = new Schema({
   ],
   businessOutline: { type: String },
   segments: [{ type: String }],
+  isMultinational: { type: Boolean, default: false },
+  isMultistate: { type: Boolean, default: false },
   currency: { type: String, required: true },
   numberOfEmployees: { type: Number },
   gstin: { type: String },

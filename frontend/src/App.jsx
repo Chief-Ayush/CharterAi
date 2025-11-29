@@ -1,10 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
+import { UserProvider } from "./context/UserContext";
+import ProtectedRoute from "./components/ProtectedRoute";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
 import TaxSummeryPage from "./pages/TaxSummeryPage";
+import FinancialChessboard from "./pages/FinancialChessboard";
+import Chatbot from "./pages/chatbot";
+import TaxSummary from "./pages/TaxSummary";
+import Profile from "./pages/Profile";
 import "./App.css";
 
 function RouteChangeLoader() {
@@ -21,7 +32,7 @@ function RouteChangeLoader() {
 
   if (!loading) return null;
 
-  const theme = localStorage.getItem('theme') || 'morning';
+  const theme = localStorage.getItem("theme") || "morning";
 
   return (
     <div className={`route-loader theme-${theme}`}>
@@ -40,6 +51,10 @@ function AppContent() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/tax-summary" element={<TaxSummeryPage />} />
+        <Route path="/chessboard" element={<FinancialChessboard />} />
+        <Route path="/chatbot" element={<Chatbot />} />
+        <Route path="/tax-summary" element={<TaxSummary />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </>
   );
@@ -48,9 +63,11 @@ function AppContent() {
 function App() {
   return (
     <Router>
-      <div className="app-container">
-        <AppContent />
-      </div>
+      <UserProvider>
+        <div className="app-container">
+          <AppContent />
+        </div>
+      </UserProvider>
     </Router>
   );
 }

@@ -8,7 +8,7 @@ export default function GraphSegments({ data }) {
   return (
     <div className="dashboard-card">
       <h3 className="card-title">Revenue by Segment</h3>
-      <ResponsiveContainer width="100%" height={300}>
+      <ResponsiveContainer width="100%" height={350}>
         <PieChart>
           <Pie
             data={data}
@@ -16,7 +16,7 @@ export default function GraphSegments({ data }) {
             cy="50%"
             labelLine={false}
             label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
-            outerRadius={100}
+            outerRadius={115}
             fill="#8884d8"
             dataKey="value"
           >

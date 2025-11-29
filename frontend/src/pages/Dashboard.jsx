@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import Navbar from "../components/Navbar";
 import KPICard from "../components/dashboard/KPICard";
 import GraphIncomeExpense from "../components/dashboard/GraphIncomeExpense";
@@ -10,6 +11,7 @@ import AlertsPanel from "../components/dashboard/AlertsPanel";
 import "../styles/Dashboard.css";
 
 export default function Dashboard() {
+  const { t } = useTranslation();
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem('theme') || "morning";
   });
@@ -108,25 +110,25 @@ export default function Dashboard() {
         {/* KPI Cards */}
         <div className="kpi-grid">
           <KPICard 
-            title="Total Revenue" 
+            title={t('dashboard.kpi.totalRevenue')} 
             value={kpiData.revenue.value} 
             subtitle={kpiData.revenue.subtitle} 
             trend={kpiData.revenue.trend} 
           />
           <KPICard 
-            title="Total Expenses" 
+            title={t('dashboard.kpi.totalExpenses')} 
             value={kpiData.expenses.value} 
             subtitle={kpiData.expenses.subtitle} 
             trend={kpiData.expenses.trend} 
           />
           <KPICard 
-            title="Net Profit" 
+            title={t('dashboard.kpi.netProfit')} 
             value={kpiData.profit.value} 
             subtitle={kpiData.profit.subtitle} 
             trend={kpiData.profit.trend} 
           />
           <KPICard 
-            title="GST Collected" 
+            title={t('dashboard.kpi.gstCollected')} 
             value={kpiData.gstCollected.value} 
             subtitle={kpiData.gstCollected.subtitle} 
             trend={kpiData.gstCollected.trend} 
@@ -165,7 +167,7 @@ export default function Dashboard() {
         <div className="footer-content">
           <div className="footer-section">
             <h4>Charter.ai</h4>
-            <p>Your AI Financial Co-Pilot for MSME Empowerment</p>
+            <p>{t('home.footer.tagline')}</p>
           </div>
           <div className="footer-section">
             <h4>Support</h4>
@@ -173,7 +175,7 @@ export default function Dashboard() {
           </div>
         </div>
         <div className="footer-bottom">
-          © 2025 Charter.ai — Built for MSME Empowerment
+          {t('home.footer.copyright')}
         </div>
       </footer>
     </div>

@@ -1,19 +1,31 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import axios from "axios";
+import { useUser } from "../context/UserContext";
+import { authAPI } from "../utils/api";
 import "../styles/Auth.css";
 
 export default function Login() {
+  const { t } = useTranslation();
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "morning");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(true);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
 
   // ------------------ THEME ------------------
   const themeOrder = ["morning", "evening", "night"];
-  const themeLabels = { morning: "Morning", evening: "Evening", night: "Night" };
+  const themeLabels = {
+    morning: "Morning",
+    evening: "Evening",
+    night: "Night",
+  };
 
   const nextTheme = () => {
-    const newTheme = themeOrder[(themeOrder.indexOf(theme) + 1) % themeOrder.length];
+    const newTheme =
+      themeOrder[(themeOrder.indexOf(theme) + 1) % themeOrder.length];
     localStorage.setItem("theme", newTheme);
     setTheme(newTheme);
   };
@@ -24,12 +36,26 @@ export default function Login() {
   }, []);
 
   // ------------------ HANDLE LOGIN ------------------
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!email || !password) return alert("Fill all fields");
+    if (!email || !password) {
+      setError("Please fill all fields");
+      return;
+    }
 
-    console.log("Login Data:", { email, password });
-    alert("Logged in successfully");
+    setError("");
+    setSubmitting(true);
+
+    try {
+      const response = await authAPI.login(email, password);
+      loginUser(response.user);
+      navigate("/dashboard");
+    } catch (err) {
+      console.error("Login error:", err);
+      setError(err.response?.data?.error || "Login failed. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const handleGoogleLogin = () => alert("Google Login Coming Soon");
@@ -42,37 +68,38 @@ export default function Login() {
       <BackgroundShapes />
 
       <div className="auth-header-bar">
-        <Link to="/" className="back-btn">← Home</Link>
+        <Link to="/" className="back-btn">← {t('auth.backToHome')}</Link>
         <button className="theme-toggle-btn" onClick={nextTheme}>{themeLabels[theme]}</button>
       </div>
 
       <div className="auth-form-container">
         <div className="auth-form-wrapper">
-
           <BrandBlock />
 
           <div className="form-content">
-            <h2>Welcome Back</h2>
-            <p>Log in to continue your AI-driven financial journey.</p>
+            <h2>{t('auth.login.title')}</h2>
+            <p>{t('auth.login.subtitle')}</p>
+
+            {error && <div className="error-message">{error}</div>}
 
             <form onSubmit={handleSubmit}>
-              <Input value={email} setter={setEmail} placeholder="Email" type="email" />
-              <Input value={password} setter={setPassword} placeholder="Password" type="password" />
+              {error && <div className="error-message">{error}</div>}
+              <Input value={email} setter={setEmail} placeholder={t('auth.login.email')} type="email" />
+              <Input value={password} setter={setPassword} placeholder={t('auth.login.password')} type="password" />
 
               <div className="form-footer-links">
-                <Link to="/forgot-password" className="forgot-link">Forgot password?</Link>
+                <Link to="/forgot-password" className="forgot-link">{t('auth.login.forgotPassword')}</Link>
               </div>
 
               <Divider />
 
-              <GoogleButton text="Login with Google" action={handleGoogleLogin} />
+              <GoogleButton text={t('auth.login.loginWithGoogle')} action={handleGoogleLogin} />
 
-              <button type="submit" className="btn-submit">Login</button>
+              <button type="submit" className="btn-submit">{t('auth.login.loginButton')}</button>
             </form>
 
-            <AuthSwitch text="Don't have an account?" link="/signup" linkText="Sign Up" />
+            <AuthSwitch text={t('auth.login.noAccount')} link="/signup" linkText={t('auth.login.signupLink')} />
             <SocialIcons />
-
           </div>
         </div>
       </div>
@@ -83,13 +110,14 @@ export default function Login() {
 /* ----- Reusable Components ----- */
 
 function LoaderScreen({ theme }) {
+  const { t } = useTranslation();
   return (
     <div className={`auth-loader theme-${theme}`}>
       <div className="loader-content">
         {theme === "morning" && <div className="loader-sun"></div>}
         {theme === "evening" && <div className="loader-evening"></div>}
         {theme === "night" && <div className="loader-night"></div>}
-        <p>Loading your experience...</p>
+        <p>{t('auth.loadingExperience')}</p>
       </div>
     </div>
   );
@@ -97,7 +125,7 @@ function LoaderScreen({ theme }) {
 
 function Input({ value, setter, type, placeholder }) {
   return (
-    <input 
+    <input
       type={type}
       placeholder={placeholder}
       value={value}
@@ -108,24 +136,37 @@ function Input({ value, setter, type, placeholder }) {
   );
 }
 
-const Divider = () => <div className="form-divider"><span>or</span></div>;
-
-const BrandBlock = () => (
-  <div className="form-brand">
-    <h1>Charter.ai</h1>
-    <p>Your AI Financial Co-Pilot</p>
+const Divider = () => (
+  <div className="form-divider">
+    <span>or</span>
   </div>
 );
 
+const BrandBlock = () => {
+  const { t } = useTranslation();
+  return (
+    <div className="form-brand">
+      <h1>Charter.ai</h1>
+      <p>{t('home.subtitle')}</p>
+    </div>
+  );
+};
+
 const GoogleButton = ({ text, action }) => (
   <button type="button" className="btn-google" onClick={action}>
-    <img src="https://www.gstatic.com/images/branding/product/1x/avatar_circle_blue_512dp.png" 
-         width="18" alt="g" /> {text}
+    <img
+      src="https://www.gstatic.com/images/branding/product/1x/avatar_circle_blue_512dp.png"
+      width="18"
+      alt="g"
+    />{" "}
+    {text}
   </button>
 );
 
 const AuthSwitch = ({ text, link, linkText }) => (
-  <p className="form-switch">{text} <Link to={link}>{linkText}</Link></p>
+  <p className="form-switch">
+    {text} <Link to={link}>{linkText}</Link>
+  </p>
 );
 
 const SocialIcons = () => (

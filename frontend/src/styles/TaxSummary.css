@@ -1,0 +1,60 @@
+.tax-summary-container {
+  min-height: 100vh;
+  background: var(--background);
+  transition: all 0.6s ease-in-out;
+}
+
+.tax-summary-content {
+  max-width: 1800px;
+  margin: 0 auto;
+  padding: 48px 5% 80px 5%;
+}
+
+.tax-summary-header {
+  margin-bottom: 48px;
+  padding-bottom: 24px;
+  border-bottom: 2px solid var(--feature-border);
+}
+
+.tax-summary-header h1 {
+  font-size: 42px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.tax-summary-header .header-subtitle {
+  font-size: 18px;
+  color: var(--secondary-text);
+  font-weight: 500;
+}
+
+.tax-summary-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+}
+
+.info-card {
+  background: var(--feature-bg);
+  border: 2px solid var(--feature-border);
+  border-radius: 28px;
+  padding: 64px 48px;
+  text-align: center;
+  max-width: 600px;
+  box-shadow: 0 8px 32px var(--shadow-color);
+}
+
+.info-card h2 {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+
+.info-card p {
+  font-size: 18px;
+  color: var(--secondary-text);
+  line-height: 1.6;
+}
