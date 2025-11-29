@@ -6,8 +6,8 @@ export default function GraphGST({ data }) {
   return (
     <div className="dashboard-card">
       <h3 className="card-title">GST Input vs Output</h3>
-      <ResponsiveContainer width="100%" height={300}>
-        <BarChart data={data}>
+        <ResponsiveContainer width="100%" height={350}>
+          <BarChart data={data}>
           <CartesianGrid strokeDasharray="3 3" stroke="var(--feature-border)" />
           <XAxis dataKey="month" stroke="var(--text-color)" />
           <YAxis stroke="var(--text-color)" />

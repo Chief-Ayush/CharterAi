@@ -1,8 +1,8 @@
 .dashboard-card {
   background: var(--feature-bg);
   backdrop-filter: blur(10px);
-  padding: 36px 32px;
-  border-radius: 24px;
+  padding: 44px 40px;
+  border-radius: 28px;
   box-shadow: 0 4px 20px var(--shadow-color);
   border: 2px solid var(--feature-border);
   transition: all 0.4s ease;
@@ -14,8 +14,10 @@
 }
 
 .card-title {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 700;
-  color: var(--primary);
-  margin-bottom: 28px;
+  color: var(--text-color);
+  margin-bottom: 36px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid var(--feature-border);
 }
