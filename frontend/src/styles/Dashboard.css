@@ -143,7 +143,7 @@
 }
 
 .dashboard-header h1 {
-  font-size: 38px;
+  font-size: 42px;
   font-weight: 800;
   color: var(--text-color);
   margin-bottom: 10px;
@@ -152,7 +152,7 @@
 }
 
 .dashboard-header p {
-  font-size: 16px;
+  font-size: 18px;
   color: var(--secondary-text);
   font-weight: 500;
   line-height: 1.5;
@@ -166,7 +166,7 @@
 .btn-secondary {
   padding: 11px 28px;
   border-radius: 24px;
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -178,7 +178,7 @@
 
 .btn-secondary:hover {
   background: var(--primary);
-  color: #fff;
+  color: #ffffff;
   transform: translateY(-2px);
   box-shadow: 0 6px 24px var(--shadow-color);
 }
@@ -280,13 +280,13 @@
 
 .footer-section h4 {
   color: var(--primary);
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 700;
   margin-bottom: 12px;
 }
 
 .footer-section p {
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.6;
 }
 
@@ -294,7 +294,23 @@
   text-align: center;
   padding-top: 24px;
   border-top: 1px solid var(--feature-border);
-  font-size: 14px;
+  font-size: 15px;
+}
+
+/* Theme-Specific Button Hover States for Better Contrast */
+.theme-morning .btn-secondary:hover {
+  background: #0284c7;
+  color: #ffffff;
+}
+
+.theme-evening .btn-secondary:hover {
+  background: #ea580c;
+  color: #ffffff;
+}
+
+.theme-night .btn-secondary:hover {
+  background: #6366f1;
+  color: #ffffff;
 }
 
 /* Responsive Design */
@@ -309,11 +325,11 @@
   }
 
   .dashboard-header h1 {
-    font-size: 30px;
+    font-size: 34px;
   }
 
   .dashboard-header p {
-    font-size: 14px;
+    font-size: 16px;
   }
 
   .kpi-grid {

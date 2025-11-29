@@ -20,6 +20,8 @@ export default function Navbar({ theme, onThemeToggle, showAuthButtons = true })
         <a href="#about">About</a>
         <a href="#services">Services</a>
         <Link to="/dashboard">Dashboard</Link>
+        <Link to="/chatbot">Chatbot</Link>
+        <Link to="/chessboard">Chessboard</Link>
         <a href="#contact">Contact</a>
       </nav>
 
