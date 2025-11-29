@@ -1,0 +1,33 @@
+.dashboard-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  padding: 30px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* LEFT SIDE */
+.dashboard-left {
+  background: rgba(255, 255, 255, 0.04);
+  padding: 25px;
+  border-radius: 16px;
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* RIGHT SIDE */
+.dashboard-right {
+  background: rgba(255, 255, 255, 0.04);
+  padding: 25px;
+  border-radius: 16px;
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* RESPONSIVE (phone/tablet) */
+@media (max-width: 900px) {
+  .dashboard-layout {
+    grid-template-columns: 1fr;
+  }
+}

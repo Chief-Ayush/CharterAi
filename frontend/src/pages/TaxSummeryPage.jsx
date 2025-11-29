@@ -5,75 +5,192 @@ import ProductTable from "../Components/ProductTable";
 import VendorTable from "../Components/VendorTable";
 import Compliance from "../Components/Compilance";
 import PaymentHistory from "../Components/PaymentHistory";
+import Navbar from "../components/Navbar";
+import "../styles/Dashboard.css"; // using same styling
 import "../App.css";
 
 const TaxSummeryPage = () => {
   const [data, setData] = useState(null);
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem("theme") || "morning";
+  });
+  const [filterType, setFilterType] = useState("Quarter");
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/tax/summery")
-      .then((res) => res.json())
-      .then((data) => setData(data))
-      .catch((err) => console.log("Error:", err));
-  }, []);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
 
-  // Example summary data for fallback
-  const exampleSummary = {
-    "Total Sales": "₹1,50,000",
-    "Total ITC": "₹25,000",
-    "GST Collected": "₹55,000",
-    "GST Payable": "₹30,000",
-    "Tax Paid": "₹10,000",
-    "Pending Tax": "₹20,000",
-    "Upcoming Due": "20-Feb-2025",
-    "Alerts / Issues": "3 Issues"
+  const nextTheme = () => {
+    const themeOrder = ["morning", "evening", "night"];
+    setTheme((prev) => themeOrder[(themeOrder.indexOf(prev) + 1) % themeOrder.length]);
   };
 
+  // Data for different filter types
+  const dataByFilter = {
+    Quarter: {
+      summary: {
+        "Total Sales": "₹1,50,000",
+        "Total ITC": "₹25,000",
+        "GST Collected": "₹55,000",
+        "GST Payable": "₹30,000",
+        "Tax Paid": "₹10,000",
+        "Pending Tax": "₹20,000",
+        "Upcoming Due": "20-Feb-2025",
+        "Alerts / Issues": "3 Issues",
+      },
+      products: [
+        { inv: "INV-001", product: "Widget A", vendor: "ABC", date: "05-Jan", taxable: "5,000", gst: "18%", gstAmt: "900", total: "5,900", itc: true },
+        { inv: "INV-002", product: "Gadget X", vendor: "XYZ", date: "08-Jan", taxable: "5,000", gst: "5%", gstAmt: "250", total: "5,250", itc: true },
+        { inv: "INV-003", product: "Widget C", vendor: "MNO", date: "11-Jan", taxable: "20,000", gst: "18%", gstAmt: "3,600", total: "23,600", itc: true },
+      ],
+      vendors: [
+        { vendor: "ABC Traders", shortName: "abc", purchase: "50,000", itc: "9,000", missing: "No" },
+        { vendor: "XYZ Supplies", shortName: "xyz", purchase: "30,000", itc: "2,000", missing: "Yes" },
+        { vendor: "MNO Enterprises", shortName: "mno", purchase: "20,000", itc: "3,600", missing: "No" },
+      ],
+      payments: [
+        { invoice: "INV-001", product: "Widget A", vendor: "ABC", date: "05-Jan", taxable: "5,000", gst: "18%", gstAmount: "900", total: "5,900", itcEligible: "Yes" },
+        { invoice: "INV-002", product: "Gadget X", vendor: "XYZ", date: "08-Jan", taxable: "5,000", gst: "5%", gstAmount: "250", total: "5,250", itcEligible: "Yes" },
+        { invoice: "INV-003", product: "Widget C", vendor: "MNO", date: "11-Jan", taxable: "20,000", gst: "18%", gstAmount: "3,600", total: "23,600", itcEligible: "Yes" },
+      ],
+    },
+    Month: {
+      summary: {
+        "Total Sales": "₹50,000",
+        "Total ITC": "₹8,500",
+        "GST Collected": "₹18,000",
+        "GST Payable": "₹9,500",
+        "Tax Paid": "₹3,200",
+        "Pending Tax": "₹6,300",
+        "Upcoming Due": "15-Dec-2025",
+        "Alerts / Issues": "1 Issue",
+      },
+      products: [
+        { inv: "INV-001", product: "Widget A", vendor: "ABC", date: "05-Jan", taxable: "2,000", gst: "18%", gstAmt: "360", total: "2,360", itc: true },
+        { inv: "INV-002", product: "Gadget X", vendor: "XYZ", date: "08-Jan", taxable: "2,000", gst: "5%", gstAmt: "100", total: "2,100", itc: true },
+      ],
+      vendors: [
+        { vendor: "ABC Traders", shortName: "abc", purchase: "18,000", itc: "3,200", missing: "No" },
+        { vendor: "XYZ Supplies", shortName: "xyz", purchase: "12,000", itc: "600", missing: "Yes" },
+      ],
+      payments: [
+        { invoice: "INV-001", product: "Widget A", vendor: "ABC", date: "05-Jan", taxable: "2,000", gst: "18%", gstAmount: "360", total: "2,360", itcEligible: "Yes" },
+        { invoice: "INV-002", product: "Gadget X", vendor: "XYZ", date: "08-Jan", taxable: "2,000", gst: "5%", gstAmount: "100", total: "2,100", itcEligible: "Yes" },
+      ],
+    },
+    Year: {
+      summary: {
+        "Total Sales": "₹4,50,000",
+        "Total ITC": "₹75,000",
+        "GST Collected": "₹1,65,000",
+        "GST Payable": "₹90,000",
+        "Tax Paid": "₹30,000",
+        "Pending Tax": "₹60,000",
+        "Upcoming Due": "31-Mar-2026",
+        "Alerts / Issues": "5 Issues",
+      },
+      products: [
+        { inv: "INV-001", product: "Widget A", vendor: "ABC", date: "05-Jan", taxable: "15,000", gst: "18%", gstAmt: "2,700", total: "17,700", itc: true },
+        { inv: "INV-002", product: "Gadget X", vendor: "XYZ", date: "08-Jan", taxable: "15,000", gst: "5%", gstAmt: "750", total: "15,750", itc: true },
+        { inv: "INV-003", product: "Widget C", vendor: "MNO", date: "11-Jan", taxable: "60,000", gst: "18%", gstAmt: "10,800", total: "70,800", itc: true },
+      ],
+      vendors: [
+        { vendor: "ABC Traders", shortName: "abc", purchase: "1,50,000", itc: "27,000", missing: "No" },
+        { vendor: "XYZ Supplies", shortName: "xyz", purchase: "90,000", itc: "6,000", missing: "Yes" },
+        { vendor: "MNO Enterprises", shortName: "mno", purchase: "60,000", itc: "10,800", missing: "No" },
+      ],
+      payments: [
+        { invoice: "INV-001", product: "Widget A", vendor: "ABC", date: "05-Jan", taxable: "15,000", gst: "18%", gstAmount: "2,700", total: "17,700", itcEligible: "Yes" },
+        { invoice: "INV-002", product: "Gadget X", vendor: "XYZ", date: "08-Jan", taxable: "15,000", gst: "5%", gstAmount: "750", total: "15,750", itcEligible: "Yes" },
+        { invoice: "INV-003", product: "Widget C", vendor: "MNO", date: "11-Jan", taxable: "60,000", gst: "18%", gstAmount: "10,800", total: "70,800", itcEligible: "Yes" },
+      ],
+    },
+  };
+
+  const currentData = dataByFilter[filterType];
+
   return (
-    <div className="container" style={{position: 'relative', zIndex: '1'}}>
-      <div style={{position: 'relative', zIndex: '1'}}>
-      <h1 style={{fontSize: '2.8em', fontWeight: '800', color: '#fff', letterSpacing: '2px', marginBottom: '30px', fontFamily: 'Segoe UI, Tahoma, Geneva, Verdana, sans-serif', textTransform: 'uppercase', textShadow: '0 4px 8px rgba(0,0,0,0.2)', background: 'linear-gradient(135deg, rgba(14, 165, 233, 0.3), rgba(2, 132, 199, 0.3))', padding: '20px 30px', borderRadius: '12px', border: '2px solid rgba(255,255,255,0.3)', backdropFilter: 'blur(10px)', marginLeft: '-30px', marginRight: '-30px', marginTop: '-10px', paddingLeft: '60px', paddingRight: '60px'}}>TAX SUMMARY – FY 2024-25</h1>
-
-      {/* Filters & Search Section */}
-      <section style={{marginBottom: '20px', borderBottom: '1px solid rgba(255,255,255,0.2)', paddingBottom: '10px', background: 'rgba(255,255,255,0.95)', borderRadius: '12px', padding: '20px'}}>
-        <Filters />
-      </section>
-
-      {/* Summary Cards Section */}
-      <section style={{marginBottom: '20px'}}>
-        <h2 style={{textAlign: 'left', color: '#fff', fontSize: '1.6em', fontWeight: '600', marginBottom: '15px', fontFamily: 'Segoe UI, Tahoma, Geneva, Verdana, sans-serif', letterSpacing: '0.5px', textTransform: 'capitalize'}}>Summary Cards</h2>
-        <SummaryCards summary={data && data.summary ? data.summary : exampleSummary} />
-      </section>
-
-      {/* Product Table Section */}
-      <section style={{marginBottom: '20px', background: 'rgba(255,255,255,0.95)', borderRadius: '12px', padding: '20px'}}>
-        <h2 style={{textAlign: 'left', color: '#333', fontSize: '1.6em', fontWeight: '600', marginBottom: '15px', fontFamily: 'Segoe UI, Tahoma, Geneva, Verdana, sans-serif', letterSpacing: '0.5px', textTransform: 'capitalize'}}>Product-wise Tax Details</h2>
-        <ProductTable products={
-          data && data.products ? data.products : [
-            {inv: "INV-001", product: "Widget A", vendor: "ABC", date: "05-Jan", taxable: "5,000", gst: "18%", gstAmt: "900", total: "5,900", itc: true},
-            {inv: "INV-001", product: "Widget B", vendor: "ABC", date: "05-Jan", taxable: "5,000", gst: "18%", gstAmt: "900", total: "5,900", itc: true},
-            {inv: "INV-002", product: "Gadget X", vendor: "XYZ", date: "08-Jan", taxable: "5,000", gst: "5%", gstAmt: "250", total: "5,250", itc: true},
-            {inv: "INV-003", product: "Widget C", vendor: "MNO", date: "11-Jan", taxable: "20,000", gst: "18%", gstAmt: "3,600", total: "23,600", itc: true},
-            {inv: "INV-003", product: "Gadget Y", vendor: "MNO", date: "11-Jan", taxable: "15,000", gst: "18%", gstAmt: "2,700", total: "17,700", itc: true}
-          ]
-        } />
-        <div style={{marginTop: '10px', textAlign: 'right'}}>
-          <button style={{padding: '8px 16px', marginLeft: '10px', background: '#667eea', color: '#fff', border: 'none', borderRadius: '4px', cursor: 'pointer', fontWeight: '500'}}>View Full Report</button>
-          <button style={{padding: '8px 16px', marginLeft: '10px', background: '#667eea', color: '#fff', border: 'none', borderRadius: '4px', cursor: 'pointer', fontWeight: '500'}}>Show 18% GST Only</button>
-        </div>
-      </section>
-
-      {/* Vendor-wise Summary Section */}
-      <section style={{marginBottom: '20px', background: 'rgba(255,255,255,0.95)', borderRadius: '12px', padding: '20px'}}>
-        <h2 style={{textAlign: 'left', color: '#333', fontSize: '1.6em', fontWeight: '600', marginBottom: '15px', fontFamily: 'Segoe UI, Tahoma, Geneva, Verdana, sans-serif', letterSpacing: '0.5px', textTransform: 'capitalize'}}>Vendor-wise Summary</h2>
-        <VendorTable />
-      </section>
-
-      {/* Payment History Section */}
-      <section style={{marginBottom: '20px', background: 'rgba(255,255,255,0.95)', borderRadius: '12px', padding: '20px'}}>
-        <PaymentHistory />
-      </section>
+    <div className={`dashboard-container theme-${theme}`}>
+      {/* Background Shapes LIKE DASHBOARD */}
+      <div className="floating-shapes-bg">
+        <div className="floating-shape shape-1"></div>
+        <div className="floating-shape shape-2"></div>
+        <div className="floating-shape shape-3"></div>
+        <div className="floating-shape shape-4"></div>
+        <div className="floating-shape shape-5"></div>
       </div>
+
+      {/* SAME NAVBAR */}
+      <Navbar theme={theme} onThemeToggle={nextTheme} showAuthButtons={false} />
+
+      <div className="dashboard-content">
+        {/* TITLE SECTION */}
+        <div className="dashboard-header">
+          <div>
+            <h1 style={{ fontSize: "2.6em", fontWeight: "750" }}>TAX SUMMARY – FY 2024-25</h1>
+            <p style={{ fontSize: "1.05em", opacity: 0.8 }}>
+              Detailed breakdown of GST, vendors & tax liabilities
+            </p>
+          </div>
+          <div className="dashboard-actions">
+            <button className="btn-secondary">Export Tax Report</button>
+            <button className="btn-primary">Upload New Invoice</button>
+          </div>
+        </div>
+
+        {/* FILTERS & SUMMARY CARDS SIDE BY SIDE */}
+        <div className="filters-cards-partition">
+          {/* LEFT SIDEBAR - FILTERS */}
+          <div className="filters-sidebar">
+            <h3 className="sidebar-heading">Filters & Controls</h3>
+            <section className="filter-section">
+              <Filters onFilterChange={setFilterType} />
+            </section>
+          </div>
+
+          {/* RIGHT AREA - SUMMARY CARDS */}
+          <div className="cards-area">
+            <h2 className="section-heading">Summary Overview</h2>
+            <SummaryCards summary={currentData?.summary} />
+          </div>
+        </div>
+
+        {/* PRODUCT TABLE */}
+        <section className="glass-card" style={{ marginBottom: "30px" }}>
+          <h2 className="section-heading">Product-wise Tax Details</h2>
+          <ProductTable products={currentData?.products} />
+          <div style={{ marginTop: "15px", textAlign: "right" }}>
+            <button className="btn-secondary">View Full Report</button>
+            <button className="btn-primary">Show only 18% GST</button>
+          </div>
+        </section>
+
+        {/* VENDOR TABLE */}
+        <section className="glass-card">
+          <h2 className="section-heading">Vendor-wise Summary</h2>
+          <VendorTable vendors={currentData?.vendors} />
+        </section>
+
+        {/* PAYMENT HISTORY */}
+        <section className="glass-card" style={{ marginTop: "30px", marginBottom: "20px" }}>
+          <PaymentHistory payments={currentData?.payments} />
+        </section>
+      </div>
+
+      {/* Footer - SAME STYLE */}
+      <footer className="dashboard-footer">
+        <div className="footer-content">
+          <div className="footer-section">
+            <h4>Charter.ai</h4>
+            <p>Your AI Financial Co-Pilot for MSME Empowerment</p>
+          </div>
+          <div className="footer-section">
+            <h4>Need Help?</h4>
+            <p>support@charter.ai</p>
+          </div>
+        </div>
+        <div className="footer-bottom">© 2025 Charter.ai — Built for MSME Growth</div>
+      </footer>
     </div>
   );
 };

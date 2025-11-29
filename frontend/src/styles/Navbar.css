@@ -28,10 +28,81 @@
   letter-spacing: 1px;
   cursor: pointer;
   transition: transform 0.3s ease, color 0.6s ease-in-out;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-image {
+  height: 85px;
+  width: auto;
+  display: block;
+  transition: transform 0.3s ease, filter 0.6s ease-in-out;
+}
+
+.logo-text {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  transition: color 0.6s ease-in-out;
+  color: var(--text-color);
 }
 
 .logo:hover {
-  transform: scale(1.05);
+  /* no hover effect */
+}
+
+.logo:hover .logo-image {
+  /* no hover effect */
+}
+
+/* Theme-specific logo colors - matching page theme */
+.theme-morning .logo-image {
+  filter: brightness(0.6) contrast(1.3) saturate(1.2);
+}
+
+.theme-morning .logo-text {
+  color: #0c4a6e;
+  font-weight: 900;
+}
+
+.theme-evening .logo-image {
+  filter: brightness(0.55) contrast(1.4) hue-rotate(-25deg) saturate(1.3);
+}
+
+.theme-evening .logo-text {
+  color: #7c2d12;
+  font-weight: 900;
+}
+
+.theme-night .logo-image {
+  filter: brightness(1.4) contrast(1.2) invert(0.1) saturate(1.1);
+}
+
+.theme-night .logo-text {
+  color: #f1f5f9;
+  font-weight: 900;
+}
+
+.logo:hover {
+  transform: scale(1.08);
+}
+
+.logo:hover .logo-image {
+  filter: brightness(1.2) contrast(1.1);
+}
+
+/* Theme-specific logo colors - matching page theme */
+.theme-morning .logo-image {
+  filter: brightness(0.6) contrast(1.3) saturate(1.2);
+}
+
+.theme-evening .logo-image {
+  filter: brightness(0.55) contrast(1.4) hue-rotate(-25deg) saturate(1.3);
+}
+
+.theme-night .logo-image {
+  filter: brightness(1.4) contrast(1.2) invert(0.1) saturate(1.1);
 }
 
 .nav-links {

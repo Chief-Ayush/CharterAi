@@ -8,6 +8,49 @@
   overflow-x: hidden;
 }
 
+/* Theme Variables for Tax Summary Page */
+.theme-morning {
+  --background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  --header-bg: rgba(255, 255, 255, 0.95);
+  --primary: #0ea5e9;
+  --primary-dark: #0284c7;
+  --text-color: #0c4a6e;
+  --secondary-text: #475569;
+  --feature-bg: rgba(255, 255, 255, 0.8);
+  --feature-border: #bae6fd;
+  --footer-bg: rgba(255, 255, 255, 0.6);
+  --shadow-color: rgba(14, 165, 233, 0.1);
+  --shape-color: rgba(255, 255, 255, 0.15);
+}
+
+.theme-evening {
+  --background: linear-gradient(135deg, #fef3c7 0%, #fed7aa 100%);
+  --header-bg: rgba(255, 251, 235, 0.95);
+  --primary: #f97316;
+  --primary-dark: #ea580c;
+  --text-color: #7c2d12;
+  --secondary-text: #92400e;
+  --feature-bg: rgba(255, 251, 235, 0.8);
+  --feature-border: #fed7aa;
+  --footer-bg: rgba(255, 251, 235, 0.6);
+  --shadow-color: rgba(249, 115, 22, 0.15);
+  --shape-color: rgba(255, 255, 255, 0.2);
+}
+
+.theme-night {
+  --background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  --header-bg: rgba(30, 41, 59, 0.95);
+  --primary: #818cf8;
+  --primary-dark: #6366f1;
+  --text-color: #f1f5f9;
+  --secondary-text: #cbd5e1;
+  --feature-bg: rgba(30, 41, 59, 0.6);
+  --feature-border: #334155;
+  --footer-bg: rgba(15, 23, 42, 0.8);
+  --shadow-color: rgba(129, 140, 248, 0.2);
+  --shape-color: rgba(255, 255, 255, 0.08);
+}
+
 /* Simple fade-in animation for page loads */
 .home-container,
 .auth-container {
@@ -237,4 +280,228 @@ h2 {
   font-size: 1.3em;
   transform: rotateY(180deg);
 }
+.common-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-align: left;
+  margin-bottom: 18px;
+  padding-bottom: 8px;
+  text-transform: capitalize;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 0.8px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.25);
+}
+
+/* Filters & Cards Partition Layout */
+.filters-cards-partition {
+  display: grid;
+  grid-template-columns: 35% 1fr;
+  gap: 24px;
+  margin-bottom: 30px;
+  align-items: stretch;
+}
+
+.filters-sidebar {
+  background: var(--feature-bg);
+  border-radius: 14px;
+  padding: 24px;
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--feature-border);
+  box-shadow: 0 8px 32px var(--shadow-color);
+  position: sticky;
+  top: 100px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-heading {
+  font-size: 1.3em;
+  font-weight: 700;
+  color: var(--text-color);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--feature-border);
+}
+
+.filter-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.cards-area {
+  background: var(--feature-bg);
+  border-radius: 14px;
+  padding: 24px;
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--feature-border);
+  display: flex;
+  flex-direction: column;
+}
+
+.cards-area .section-heading {
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--primary, #0ea5e9);
+  color: var(--primary, #0ea5e9);
+  font-size: 1.3rem;
+  font-weight: 700;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  letter-spacing: 0.5px;
+}
+
+.section-heading {
+  color: var(--primary, #0ea5e9);
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 18px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--primary, #0ea5e9);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 1024px) {
+  .filters-cards-partition {
+    grid-template-columns: 1fr;
+  }
+  .filters-sidebar {
+    position: relative;
+    top: auto;
+  }
+}
+
+/* Glass Card Summary with Simple Animation */
+@keyframes glow-subtle {
+  0% {
+    box-shadow: 0 4px 15px rgba(14, 165, 233, 0.15);
+  }
+  50% {
+    box-shadow: 0 4px 25px rgba(14, 165, 233, 0.25);
+  }
+  100% {
+    box-shadow: 0 4px 15px rgba(14, 165, 233, 0.15);
+  }
+}
+
+@keyframes card-float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.summary-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 18px;
+  margin-bottom: 20px;
+  justify-items: center;
+}
+
+.summary-cards-grid-top {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 18px;
+  margin-bottom: 20px;
+}
+
+.summary-cards-grid-bottom {
+  display: flex;
+  gap: 18px;
+  margin-bottom: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.glass-card-summary {
+  position: relative;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 24px;
+  backdrop-filter: blur(12px);
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  min-height: 140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  animation: glow-subtle 4s ease-in-out infinite, card-float 5s ease-in-out infinite;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  width: 100%;
+}
+
+.summary-cards-grid-top .glass-card-summary {
+  width: 100%;
+}
+
+.summary-cards-grid-bottom .glass-card-summary {
+  min-width: 200px;
+  flex-shrink: 0;
+  flex-grow: 1;
+  max-width: calc((100% - 18px) / 2);
+}
+
+.glass-card-summary:nth-child(1),
+.glass-card-summary:nth-child(2) {
+  justify-self: stretch;
+}
+
+.glass-card-summary:nth-child(n+3) {
+  justify-self: center;
+}
+
+.glass-card-summary:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 6px 20px rgba(14, 165, 233, 0.2);
+}
+
+.card-glow {
+  display: none;
+}
+
+.card-content {
+  position: relative;
+  z-index: 1;
+}
+
+.card-title {
+  font-size: 0.85rem;
+  color: var(--secondary-text, rgba(255, 255, 255, 0.75));
+  font-weight: 500;
+  margin: 0 0 10px 0;
+  letter-spacing: 0.5px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-transform: uppercase;
+}
+
+.card-value {
+  font-size: 1.7rem;
+  color: var(--primary, #0ea5e9);
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: 0.5px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+@media (max-width: 768px) {
+  .summary-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .summary-cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 

@@ -13,7 +13,10 @@ export default function Navbar({ theme, onThemeToggle, showAuthButtons = true })
 
   return (
     <header className="header">
-      <div className="logo" onClick={() => navigate("/")}>Charter.ai</div>
+      <div className="logo" onClick={() => navigate("/")}>
+        <img src="/logo.png" alt="Charter.ai Logo" className="logo-image" />
+        <span className="logo-text">charter.ai</span>
+      </div>
 
       <nav className="nav-links">
         <a href="#home">Home</a>

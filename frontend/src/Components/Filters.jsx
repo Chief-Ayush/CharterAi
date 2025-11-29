@@ -1,25 +1,93 @@
-import React from "react";
+import React, { useState } from "react";
+import "./Filters.css";
 
-const Filters = () => {
-  const [filterType, setFilterType] = React.useState('Month');
-  const [customDate, setCustomDate] = React.useState('');
+const Filters = ({ onFilterChange }) => {
+  const [filterType, setFilterType] = useState("Quarter");
+
+  const handleFilterChange = (e) => {
+    const newFilter = e.target.value;
+    setFilterType(newFilter);
+    if (onFilterChange) {
+      onFilterChange(newFilter);
+    }
+  };
 
   return (
-    <div className="filters" style={{textAlign: 'left', fontFamily: 'arial', fontSize: '1em', background: 'rgba(255,255,255,0.9)', padding: '20px', borderRadius: '12px', border: '1px solid #bae6fd', marginBottom: '10px', boxShadow: '0 4px 15px rgba(14, 165, 233, 0.1)'}}>
-      <div style={{marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '12px'}}>
-        <span style={{color: '#0284c7', fontWeight: 'bold', minWidth: '60px'}}>Filter:</span>
-        <select value={filterType} onChange={e => setFilterType(e.target.value)} style={{padding: '8px 12px', background: '#0284c7', color: '#fff', border: 'none', borderRadius: '6px', fontWeight: '500', cursor: 'pointer'}}>
-          <option value="Month">Month</option>
-          <option value="Quarter">Quarter</option>
-          <option value="Year">Year</option>
-        </select>
-        <button style={{padding: '8px 20px', background: '#0ea5e9', color: '#fff', border: 'none', borderRadius: '6px', fontWeight: '500', cursor: 'pointer'}}>Filter</button>
+    <div className="filters-card">
+      <h3 className="filters-title">Filter Options</h3>
+
+      <div className="filters-grid">
+
+        {/* Filter By */}
+        <div className="filter-field">
+          <label>Filter By</label>
+          <select value={filterType} onChange={handleFilterChange}>
+            <option>Month</option>
+            <option>Quarter</option>
+            <option>Year</option>
+          </select>
+        </div>
+
+        {/* Conditional Inputs */}
+        {filterType === "Month" && (
+          <div className="filter-field">
+            <label>Select Month</label>
+            <select>
+              <option>January</option>
+              <option>February</option>
+              <option>March</option>
+              <option>April</option>
+              <option>May</option>
+              <option>June</option>
+              <option>July</option>
+              <option>August</option>
+              <option>September</option>
+              <option>October</option>
+              <option>November</option>
+              <option>December</option>
+            </select>
+          </div>
+        )}
+
+        {filterType === "Quarter" && (
+          <div className="filter-field">
+            <label>Select Quarter</label>
+            <select>
+              <option>Q1</option>
+              <option>Q2</option>
+              <option>Q3</option>
+              <option>Q4</option>
+            </select>
+          </div>
+        )}
+
+        {filterType === "Year" && (
+          <div className="filter-field">
+            <label>Select Year</label>
+            <select>
+              <option>2023</option>
+              <option>2024</option>
+              <option>2025</option>
+            </select>
+          </div>
+        )}
+
+        {/* Search */}
+        <div className="filter-field full-width">
+          <label>Search Product / Vendor</label>
+          <input type="text" placeholder="Search..." />
+        </div>
       </div>
-      <div style={{display: 'flex', alignItems: 'center', gap: '12px'}}>
-        <span style={{color: '#0284c7', fontWeight: 'bold', minWidth: '60px'}}>Search:</span>
-        <input type="text" placeholder="Product / Vendor" style={{padding: '8px 12px', background: '#f0f9ff', color: '#0c4a6e', border: '1px solid #bae6fd', borderRadius: '6px', fontWeight: '500', flex: '1', maxWidth: '250px'}} />
-        <button style={{padding: '8px 16px', background: '#0284c7', color: '#fff', border: 'none', borderRadius: '6px', fontWeight: '500', cursor: 'pointer'}}>Export PDF</button>
-        <button style={{padding: '8px 16px', background: '#0284c7', color: '#fff', border: 'none', borderRadius: '6px', fontWeight: '500', cursor: 'pointer'}}>Export CSV</button>
+
+      {/* Apply Filter Button */}
+      <div className="apply-center">
+        <button className="apply-btn">Apply Filter</button>
+      </div>
+
+      {/* Export Buttons */}
+      <div className="export-row">
+        <button className="export-btn">Export PDF</button>
+        <button className="export-btn">Export CSV</button>
       </div>
     </div>
   );

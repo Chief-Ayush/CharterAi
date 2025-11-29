@@ -1,0 +1,52 @@
+.summary-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.summary-card {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: pointer;
+  text-align: center;
+}
+
+/* Hover Effect */
+.summary-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.18);
+}
+
+.summary-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+.summary-value {
+  font-size: 26px;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* Different Background Colors */
+.sales {
+  border-left: 6px solid #4CAF50;
+}
+
+.itc {
+  border-left: 6px solid #2196F3;
+}
+
+.gst {
+  border-left: 6px solid #FF9800;
+}
+
+.tax {
+  border-left: 6px solid #E91E63;
+}

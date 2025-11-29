@@ -1,0 +1,119 @@
+/* Outer Card */
+.filters-card {
+  width: 100%;
+  padding: 18px;
+  border-radius: 12px;
+  background: var(--feature-bg);
+  border: 1px solid var(--feature-border);
+  backdrop-filter: blur(12px);
+}
+
+/* Title */
+.filters-title {
+  font-size: 1.1rem;
+  margin-bottom: 14px;
+  color: var(--text-color);
+  border-bottom: 1px solid var(--feature-border);
+  padding-bottom: 8px;
+  font-weight: 600;
+}
+
+/* Grid layout */
+.filters-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* Input fields */
+.filter-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-field label {
+  margin-bottom: 4px;
+  color: var(--secondary-text);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.filter-field select,
+.filter-field input {
+  padding: 8px 10px;
+  font-size: 0.9rem;
+  border-radius: 8px;
+  background: var(--feature-bg);
+  border: 1px solid var(--feature-border);
+  color: var(--text-color);
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.filter-field select:hover,
+.filter-field input:hover {
+  background: var(--feature-bg);
+  border-color: var(--primary);
+  opacity: 0.8;
+}
+
+.filter-field select:focus,
+.filter-field input:focus {
+  background: var(--feature-bg);
+  border-color: var(--primary);
+  box-shadow: 0 0 8px var(--shadow-color);
+}
+
+.full-width {
+  grid-column: span 2;
+}
+
+/* Apply Filter Button Centered */
+.apply-center {
+  text-align: center;
+  margin-top: 14px;
+}
+
+.apply-btn {
+  padding: 9px 22px;
+  background: linear-gradient(135deg, var(--primary, #0ea5e9), var(--primary-dark, #0284c7));
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.apply-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--shadow-color, rgba(14, 165, 233, 0.3));
+}
+
+/* Export Buttons Row */
+.export-row {
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.export-btn {
+  padding: 7px 16px;
+  background: transparent;
+  color: var(--text-color);
+  border: 1px solid var(--feature-border);
+  border-radius: 8px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.export-btn:hover {
+  background: var(--feature-bg);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+
