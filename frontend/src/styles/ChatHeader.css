@@ -2,14 +2,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.1) 0%,
-    rgba(255, 255, 255, 0.05) 100%
-  );
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 28px 40px;
+  background: var(--header-bg, rgba(255, 255, 255, 0.15));
+  backdrop-filter: blur(16px);
+  border-bottom: 1.5px solid var(--feature-border, rgba(255, 255, 255, 0.2));
+  box-shadow: 0 8px 32px var(--shadow-color, rgba(14, 165, 233, 0.08));
 }
 
 .header-content {
@@ -18,76 +15,38 @@
   gap: 15px;
 }
 
-.header-icon {
-  width: 50px;
-  height: 50px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 28px;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-}
-
-.robot-icon {
-  display: block;
-}
-
-.header-info {
-  color: white;
-}
-
 .header-title {
   margin: 0;
-  font-size: 18px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: var(--text-primary, #1e293b);
+  background: linear-gradient(
+    135deg,
+    var(--primary, #0ea5e9),
+    var(--primary-dark, #0284c7)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.header-subtitle {
-  margin: 4px 0 0 0;
-  font-size: 12px;
-  opacity: 0.8;
-  font-weight: 400;
-}
+@media (max-width: 768px) {
+  .chat-header {
+    padding: 20px 24px;
+  }
 
-.menu-button {
-  background: rgba(255, 255, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: white;
-  padding: 10px 12px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: all 0.3s ease;
-}
-
-.menu-button:hover {
-  background: rgba(255, 255, 255, 0.3);
-  transform: scale(1.05);
-}
-
-.menu-icon {
-  display: block;
+  .header-title {
+    font-size: 28px;
+  }
 }
 
 @media (max-width: 480px) {
   .chat-header {
-    padding: 15px;
-  }
-
-  .header-icon {
-    width: 40px;
-    height: 40px;
-    font-size: 22px;
+    padding: 18px 16px;
   }
 
   .header-title {
-    font-size: 16px;
-  }
-
-  .header-subtitle {
-    font-size: 11px;
+    font-size: 24px;
   }
 }
