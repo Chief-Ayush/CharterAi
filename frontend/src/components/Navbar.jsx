@@ -1,30 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import LanguageSelector from "./LanguageSelector";
+import { useUser } from "../context/UserContext";
 import "../styles/Navbar.css";
 
 export default function Navbar({ theme, onThemeToggle }) {
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { user, logout, isAuthenticated } = useUser();
   const [showDropdown, setShowDropdown] = useState(false);
-  
+
   const themeLabels = {
     morning: "Morning",
     evening: "Evening",
-    night: "Night"
+    night: "Night",
   };
 
-  useEffect(() => {
-    // Check if user is logged in by checking for token
-    const token = localStorage.getItem("token");
-    setIsLoggedIn(!!token);
-  }, []);
-
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    setIsLoggedIn(false);
+    logout();
     setShowDropdown(false);
     navigate("/");
   };
@@ -37,18 +31,18 @@ export default function Navbar({ theme, onThemeToggle }) {
       </div>
 
       <nav className="nav-links">
-        <Link to="/">{t('navbar.home')}</Link>
-        <Link to="/dashboard">{t('navbar.dashboard')}</Link>
-        <Link to="/chessboard">{t('navbar.cashflowSimulator')}</Link>
-        <Link to="/tax-summary">{t('navbar.taxSummary')}</Link>
+        <Link to="/">{t("navbar.home")}</Link>
+        <Link to="/dashboard">{t("navbar.dashboard")}</Link>
+        <Link to="/chessboard">{t("navbar.cashflowSimulator")}</Link>
+        <Link to="/tax-summary">{t("navbar.taxSummary")}</Link>
       </nav>
 
       <div className="header-actions">
         <LanguageSelector />
-        {isLoggedIn ? (
+        {isAuthenticated() ? (
           <div className="user-dropdown">
-            <button 
-              className="btn-user" 
+            <button
+              className="btn-user"
               onClick={() => setShowDropdown(!showDropdown)}
             >
               <span className="user-icon">●</span>
@@ -56,34 +50,30 @@ export default function Navbar({ theme, onThemeToggle }) {
             </button>
             {showDropdown && (
               <div className="dropdown-menu">
-                <Link 
-                  to="/profile" 
+                <Link
+                  to="/profile"
                   className="dropdown-item"
                   onClick={() => setShowDropdown(false)}
                 >
                   <span className="dropdown-icon">◆</span>
-                  {t('navbar.profile')}
+                  {t("navbar.profile")}
                 </Link>
-                <button 
-                  className="dropdown-item" 
-                  onClick={onThemeToggle}
-                >
+                <button className="dropdown-item" onClick={onThemeToggle}>
                   <span className="dropdown-icon">◐</span>
-                  {t('navbar.theme')}: {themeLabels[theme]}
+                  {t("navbar.theme")}: {themeLabels[theme]}
                 </button>
                 <div className="dropdown-divider"></div>
-                <button 
-                  className="dropdown-item logout" 
-                  onClick={handleLogout}
-                >
+                <button className="dropdown-item logout" onClick={handleLogout}>
                   <span className="dropdown-icon">×</span>
-                  {t('navbar.logout')}
+                  {t("navbar.logout")}
                 </button>
               </div>
             )}
           </div>
         ) : (
-          <Link to="/login" className="btn-primary">{t('common.login')}</Link>
+          <Link to="/login" className="btn-primary">
+            {t("common.login")}
+          </Link>
         )}
       </div>
     </header>

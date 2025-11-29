@@ -8,7 +8,11 @@ import "../styles/Auth.css";
 
 export default function Login() {
   const { t } = useTranslation();
-  const [theme, setTheme] = useState(localStorage.getItem("theme") || "morning");
+  const navigate = useNavigate();
+  const { login: loginUser, isAuthenticated } = useUser();
+  const [theme, setTheme] = useState(
+    localStorage.getItem("theme") || "morning"
+  );
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(true);
@@ -29,6 +33,13 @@ export default function Login() {
     localStorage.setItem("theme", newTheme);
     setTheme(newTheme);
   };
+
+  // ------------------ CHECK IF ALREADY AUTHENTICATED ------------------
+  useEffect(() => {
+    if (isAuthenticated()) {
+      navigate("/dashboard", { replace: true });
+    }
+  }, [isAuthenticated, navigate]);
 
   // ------------------ PAGE LOADER ------------------
   useEffect(() => {
@@ -68,8 +79,12 @@ export default function Login() {
       <BackgroundShapes />
 
       <div className="auth-header-bar">
-        <Link to="/" className="back-btn">← {t('auth.backToHome')}</Link>
-        <button className="theme-toggle-btn" onClick={nextTheme}>{themeLabels[theme]}</button>
+        <Link to="/" className="back-btn">
+          ← {t("auth.backToHome")}
+        </Link>
+        <button className="theme-toggle-btn" onClick={nextTheme}>
+          {themeLabels[theme]}
+        </button>
       </div>
 
       <div className="auth-form-container">
@@ -77,28 +92,48 @@ export default function Login() {
           <BrandBlock />
 
           <div className="form-content">
-            <h2>{t('auth.login.title')}</h2>
-            <p>{t('auth.login.subtitle')}</p>
+            <h2>{t("auth.login.title")}</h2>
+            <p>{t("auth.login.subtitle")}</p>
 
             {error && <div className="error-message">{error}</div>}
 
             <form onSubmit={handleSubmit}>
-              {error && <div className="error-message">{error}</div>}
-              <Input value={email} setter={setEmail} placeholder={t('auth.login.email')} type="email" />
-              <Input value={password} setter={setPassword} placeholder={t('auth.login.password')} type="password" />
+              <Input
+                value={email}
+                setter={setEmail}
+                placeholder={t("auth.login.email")}
+                type="email"
+              />
+              <Input
+                value={password}
+                setter={setPassword}
+                placeholder={t("auth.login.password")}
+                type="password"
+              />
 
               <div className="form-footer-links">
-                <Link to="/forgot-password" className="forgot-link">{t('auth.login.forgotPassword')}</Link>
+                <Link to="/forgot-password" className="forgot-link">
+                  {t("auth.login.forgotPassword")}
+                </Link>
               </div>
 
               <Divider />
 
-              <GoogleButton text={t('auth.login.loginWithGoogle')} action={handleGoogleLogin} />
+              <GoogleButton
+                text={t("auth.login.loginWithGoogle")}
+                action={handleGoogleLogin}
+              />
 
-              <button type="submit" className="btn-submit">{t('auth.login.loginButton')}</button>
+              <button type="submit" className="btn-submit">
+                {t("auth.login.loginButton")}
+              </button>
             </form>
 
-            <AuthSwitch text={t('auth.login.noAccount')} link="/signup" linkText={t('auth.login.signupLink')} />
+            <AuthSwitch
+              text={t("auth.login.noAccount")}
+              link="/signup"
+              linkText={t("auth.login.signupLink")}
+            />
             <SocialIcons />
           </div>
         </div>
@@ -117,7 +152,7 @@ function LoaderScreen({ theme }) {
         {theme === "morning" && <div className="loader-sun"></div>}
         {theme === "evening" && <div className="loader-evening"></div>}
         {theme === "night" && <div className="loader-night"></div>}
-        <p>{t('auth.loadingExperience')}</p>
+        <p>{t("auth.loadingExperience")}</p>
       </div>
     </div>
   );
@@ -147,7 +182,7 @@ const BrandBlock = () => {
   return (
     <div className="form-brand">
       <h1>Charter.ai</h1>
-      <p>{t('home.subtitle')}</p>
+      <p>{t("home.subtitle")}</p>
     </div>
   );
 };

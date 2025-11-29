@@ -20,6 +20,11 @@ i18n
       order: ["localStorage", "navigator"],
       caches: ["localStorage"],
     },
+    react: {
+      useSuspense: true,
+    },
+    saveMissing: false,
+    missingKeyHandler: false,
   });
 
 export default i18n;

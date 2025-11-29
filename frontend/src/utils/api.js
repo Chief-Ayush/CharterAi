@@ -35,4 +35,97 @@ export const authAPI = {
   },
 };
 
+// Document API calls
+export const documentAPI = {
+  upload: async (formData) => {
+    // Get user from localStorage
+    const userStr = localStorage.getItem("charterAiUser");
+    const user = userStr ? JSON.parse(userStr) : null;
+
+    if (!user) {
+      throw new Error("User not authenticated");
+    }
+
+    // Add userId to formData
+    formData.append("userId", user._id);
+
+    const response = await api.post("/api/documents/upload", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        "x-user-id": user._id,
+      },
+    });
+    return response.data;
+  },
+
+  getAll: async (filters = {}) => {
+    const userStr = localStorage.getItem("charterAiUser");
+    const user = userStr ? JSON.parse(userStr) : null;
+
+    if (!user) {
+      throw new Error("User not authenticated");
+    }
+
+    const response = await api.get("/api/documents", {
+      params: filters,
+      headers: {
+        "x-user-id": user._id,
+      },
+    });
+    return response.data;
+  },
+
+  getById: async (id) => {
+    const userStr = localStorage.getItem("charterAiUser");
+    const user = userStr ? JSON.parse(userStr) : null;
+
+    if (!user) {
+      throw new Error("User not authenticated");
+    }
+
+    const response = await api.get(`/api/documents/${id}`, {
+      headers: {
+        "x-user-id": user._id,
+      },
+    });
+    return response.data;
+  },
+
+  updateStatus: async (id, status) => {
+    const userStr = localStorage.getItem("charterAiUser");
+    const user = userStr ? JSON.parse(userStr) : null;
+
+    if (!user) {
+      throw new Error("User not authenticated");
+    }
+
+    const response = await api.patch(
+      `/api/documents/${id}/status`,
+      { reviewStatus: status },
+      {
+        headers: {
+          "x-user-id": user._id,
+        },
+      }
+    );
+    return response.data;
+  },
+
+  delete: async (id) => {
+    const userStr = localStorage.getItem("charterAiUser");
+    const user = userStr ? JSON.parse(userStr) : null;
+
+    if (!user) {
+      throw new Error("User not authenticated");
+    }
+
+    const response = await api.delete(`/api/documents/${id}`, {
+      headers: {
+        "x-user-id": user._id,
+      },
+    });
+    return response.data;
+  },
+};
+
 export default api;
