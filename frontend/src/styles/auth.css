@@ -133,10 +133,7 @@
 }
 
 .form-brand h1 {
-  cd C:\Users\Office\CharterAi
-  git mv frontend/src/styles/Auth.css frontend/src/styles/auth-temp.css
-  git mv frontend/src/styles/auth-temp.css frontend/src/styles/auth.css
-  git add frontend/src/styles/auth.css  font-size: 38px;
+  font-size: 38px;
   font-weight: 800;
   margin-bottom: 8px;
   color: var(--primary);
