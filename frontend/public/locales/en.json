@@ -28,6 +28,7 @@
   "navbar": {
     "home": "Home",
     "dashboard": "Dashboard",
+    "cashflowSimulator": "Cashflow Simulator",
     "taxSummary": "Tax Summary",
     "profile": "Profile",
     "theme": "Theme",
@@ -35,7 +36,7 @@
   },
   "home": {
     "title": "Your AI Financial Co-Pilot",
-    "subtitle": "Automate your finances, simulate cashflow, and get instant tax summaries—all with multilingual voice & chat.",
+    "subtitle": "Automate your finances, simulate cashflow, and get instant tax summaries all with multilingual support.",
     "aiChatbot": "AI Chatbot",
     "cashflowSimulator": "Cashflow Simulator",
     "dashboard": "Dashboard",

@@ -39,6 +39,7 @@ export default function Navbar({ theme, onThemeToggle }) {
       <nav className="nav-links">
         <Link to="/">{t('navbar.home')}</Link>
         <Link to="/dashboard">{t('navbar.dashboard')}</Link>
+        <Link to="/chessboard">{t('navbar.cashflowSimulator')}</Link>
         <Link to="/tax-summary">{t('navbar.taxSummary')}</Link>
       </nav>
 

@@ -35,22 +35,59 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className="hero" id="home">
-        <div className="hero-text">
-          <h1>{t('home.title')}</h1>
-          <p>
+        <div className="hero-content">
+          <div className="hero-badge">
+            <span className="badge-icon">✦</span>
+            <span className="badge-text">AI-Powered Financial Platform</span>
+          </div>
+          <h1 className="hero-title">{t('home.title')}</h1>
+          <p className="hero-description">
             {t('home.subtitle')}
           </p>
           <div className="hero-actions">
-            <Link to="/chatbot" className="btn-hero">{t('home.aiChatbot')}</Link>
-            <Link to="/chessboard" className="btn-hero btn-hero-secondary">{t('home.cashflowSimulator')}</Link>
-            <Link to="/dashboard" className="btn-hero btn-hero-tertiary">{t('home.dashboard')}</Link>
+            <Link to="/dashboard" className="btn-hero">
+              <span className="btn-icon">📊</span>
+              <span>{t('home.dashboard')}</span>
+              <span className="btn-arrow">→</span>
+            </Link>
+            <Link to="/chessboard" className="btn-hero">
+              <span className="btn-icon">♟</span>
+              <span>{t('home.cashflowSimulator')}</span>
+              <span className="btn-arrow">→</span>
+            </Link>
           </div>
         </div>
-        <div className="hero-image">
-          <div className="placeholder-box">
-            {/* Optionally, embed a demo video here */}
-            {/* <video src="/demo.mp4" controls style={{width: '100%', borderRadius: 24}} /> */}
+        <div className="hero-visual">
+          <div className="visual-card card-floating">
+            <div className="card-header">
+              <div className="card-icon">📈</div>
+              <div className="card-title">Real-Time Analytics</div>
+            </div>
+            <div className="card-chart">
+              <div className="chart-bar" style={{height: '40%'}}></div>
+              <div className="chart-bar" style={{height: '65%'}}></div>
+              <div className="chart-bar" style={{height: '80%'}}></div>
+              <div className="chart-bar" style={{height: '55%'}}></div>
+              <div className="chart-bar" style={{height: '90%'}}></div>
+            </div>
           </div>
+          <div className="visual-card card-floating-delayed">
+            <div className="card-header">
+              <div className="card-icon">🎯</div>
+              <div className="card-title">Smart Predictions</div>
+            </div>
+            <div className="prediction-items">
+              <div className="prediction-item">
+                <span className="pred-label">Next Month Revenue</span>
+                <span className="pred-value positive">+12.5%</span>
+              </div>
+              <div className="prediction-item">
+                <span className="pred-label">Cash Flow Status</span>
+                <span className="pred-value success">Healthy</span>
+              </div>
+            </div>
+          </div>
+          <div className="visual-glow"></div>
         </div>
       </section>
 
@@ -130,6 +167,11 @@ export default function Home() {
           © 2025 Charter.ai — {t('home.footer.copyright')}
         </div>
       </footer>
+
+      {/* Floating AI Chatbot Button */}
+      <Link to="/chatbot" className="floating-chat-btn" title={t('home.aiChatbot')}>
+        <span className="chat-icon">💬</span>
+      </Link>
     </div>
   );
 }

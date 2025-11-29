@@ -4,7 +4,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 60px;
+  padding: 12px 60px;
   border-radius: 0 0 24px 24px;
   background: var(--header-bg);
   backdrop-filter: blur(10px);
@@ -13,6 +13,7 @@
   position: sticky;
   top: 0;
   z-index: 100;
+  min-height: 70px;
 }
 
 .header-actions {
@@ -159,7 +160,7 @@
 }
 
 .logo {
-  font-size: 30px;
+  font-size: 28px;
   font-weight: 800;
   color: var(--primary);
   letter-spacing: 1px;
@@ -167,30 +168,22 @@
   transition: transform 0.3s ease, color 0.6s ease-in-out;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .logo-image {
-  height: 85px;
+  height: 48px;
   width: auto;
   display: block;
   transition: transform 0.3s ease, filter 0.6s ease-in-out;
 }
 
 .logo-text {
-  font-size: 24px;
+  font-size: 28px;
   font-weight: 800;
   letter-spacing: 0.5px;
   transition: color 0.6s ease-in-out;
   color: var(--text-color);
-}
-
-.logo:hover {
-  /* no hover effect */
-}
-
-.logo:hover .logo-image {
-  /* no hover effect */
 }
 
 /* Theme-specific logo colors - matching page theme */
@@ -222,14 +215,10 @@
 }
 
 .logo:hover {
-  transform: scale(1.08);
+  transform: scale(1.05);
 }
 
-.logo:hover .logo-image {
-  filter: brightness(1.2) contrast(1.1);
-}
-
-/* Theme-specific logo colors - matching page theme */
+/* Theme-specific logo colors - maintaining contrast with theme */
 .theme-morning .logo-image {
   filter: brightness(0.6) contrast(1.3) saturate(1.2);
 }
@@ -248,20 +237,23 @@
 }
 
 .nav-links a {
-  margin: 0 18px;
+  margin: 0 16px;
   text-decoration: none;
   color: var(--text-color);
-  font-size: 18px;
-  font-weight: 500;
+  font-size: 17px;
+  font-weight: 600;
   position: relative;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
+  padding: 8px 12px;
+  border-radius: 12px;
 }
 
 .nav-links a::after {
   content: '';
   position: absolute;
-  bottom: -4px;
-  left: 0;
+  bottom: 2px;
+  left: 12px;
+  right: 12px;
   width: 0;
   height: 2px;
   background: var(--primary);
@@ -270,10 +262,24 @@
 
 .nav-links a:hover {
   color: var(--primary);
+  background: rgba(14, 165, 233, 0.08);
 }
 
 .nav-links a:hover::after {
-  width: 100%;
+  width: calc(100% - 24px);
+}
+
+/* Theme-specific nav link hover backgrounds */
+.theme-morning .nav-links a:hover {
+  background: rgba(14, 165, 233, 0.1);
+}
+
+.theme-evening .nav-links a:hover {
+  background: rgba(249, 115, 22, 0.1);
+}
+
+.theme-night .nav-links a:hover {
+  background: rgba(129, 140, 248, 0.15);
 }
 
 .btn-primary,
