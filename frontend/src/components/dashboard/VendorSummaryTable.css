@@ -1,0 +1,28 @@
+.vendor-name {
+  font-weight: 600;
+  color: var(--primary);
+  font-size: 16px;
+}
+
+.type-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.type-vendor {
+  background: rgba(139, 92, 246, 0.1);
+  color: #8b5cf6;
+}
+
+.type-customer {
+  background: rgba(236, 72, 153, 0.1);
+  color: #ec4899;
+}
+
+.amount-primary {
+  font-weight: 600;
+  color: var(--text-color);
+}

@@ -1,44 +1,81 @@
-#root {
+/* Container */
+.app-container {
   width: 100%;
+  min-height: 100vh;
+  position: relative;
   margin: 0;
   padding: 0;
-  text-align: center;
+  overflow-x: hidden;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* Simple fade-in animation for page loads */
+.home-container,
+.auth-container {
+  animation: fadeIn 0.4s ease-out;
 }
 
-@keyframes logo-spin {
+@keyframes fadeIn {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
+    transform: translateY(20px);
   }
   to {
-    transform: rotate(360deg);
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+/* Route Change Loader */
+.route-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.route-loader.theme-morning {
+  background: rgba(14, 165, 233, 0.1);
+}
+
+.route-loader.theme-evening {
+  background: rgba(249, 115, 22, 0.1);
+}
+
+.route-loader.theme-night {
+  background: rgba(129, 140, 248, 0.1);
+}
+
+.route-loader-bar {
+  height: 100%;
+  animation: loading 0.8s ease-in-out;
+  transform-origin: left;
+}
+
+.theme-morning .route-loader-bar {
+  background: linear-gradient(90deg, #0ea5e9, #06b6d4);
+}
+
+.theme-evening .route-loader-bar {
+  background: linear-gradient(90deg, #f97316, #fb923c);
+}
+
+.theme-night .route-loader-bar {
+  background: linear-gradient(90deg, #818cf8, #a78bfa);
+}
+
+@keyframes loading {
+  0% {
+    transform: scaleX(0);
   }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+  50% {
+    transform: scaleX(0.5);
+  }
+  100% {
+    transform: scaleX(1);
+  }
 }
 
 @keyframes float-animation {
