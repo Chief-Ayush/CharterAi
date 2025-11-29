@@ -1,0 +1,93 @@
+.table-card {
+  grid-column: span 2;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+.dashboard-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.dashboard-table thead {
+  background: var(--primary);
+  color: white;
+}
+
+.dashboard-table th {
+  padding: 18px 24px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.dashboard-table th:first-child {
+  border-radius: 12px 0 0 0;
+}
+
+.dashboard-table th:last-child {
+  border-radius: 0 12px 0 0;
+}
+
+.dashboard-table tbody tr {
+  border-bottom: 1px solid var(--feature-border);
+  transition: background 0.2s ease;
+}
+
+.dashboard-table tbody tr:hover {
+  background: var(--header-bg);
+}
+
+.dashboard-table td {
+  padding: 18px 24px;
+  color: var(--text-color);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.category-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  background: var(--primary);
+  color: white;
+}
+
+.amount-positive {
+  color: #10b981;
+  font-weight: 700;
+}
+
+.amount-negative {
+  color: #ef4444;
+  font-weight: 700;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.status-completed {
+  background: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+}
+
+.status-pending {
+  background: rgba(245, 158, 11, 0.1);
+  color: #f59e0b;
+}
+
+.status-failed {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
