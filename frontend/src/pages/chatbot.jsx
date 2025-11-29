@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../styles/chatbot.css";
+import Navbar from "../components/Navbar";
 import ChatHeader from "../components/ChatHeader";
 import ChatMessages from "../components/ChatMessages";
 import ChatInput from "../components/ChatInput";
@@ -14,6 +15,31 @@ function Chatbot() {
     },
   ]);
   const [isLoading, setIsLoading] = useState(false);
+  const [theme, setTheme] = useState(
+    localStorage.getItem("theme") || "morning"
+  );
+
+  // Apply theme to chatbot container on mount and when theme changes
+  useEffect(() => {
+    const chatbotContainer = document.querySelector(".chatbot-container");
+    if (chatbotContainer) {
+      chatbotContainer.classList.remove(
+        "theme-morning",
+        "theme-evening",
+        "theme-night"
+      );
+      chatbotContainer.classList.add(`theme-${theme}`);
+    }
+  }, [theme]);
+
+  const handleThemeToggle = () => {
+    const themes = ["morning", "evening", "night"];
+    const currentIndex = themes.indexOf(theme);
+    const nextTheme = themes[(currentIndex + 1) % themes.length];
+    setTheme(nextTheme);
+    localStorage.setItem("theme", nextTheme);
+    document.documentElement.setAttribute("data-theme", nextTheme);
+  };
 
   const handleSendMessage = async (text) => {
     if (!text.trim()) return;
@@ -75,7 +101,7 @@ function Chatbot() {
   };
 
   return (
-    <div className="chatbot-container">
+    <div className={`chatbot-container theme-${theme}`}>
       {/* Animated background shapes for consistency */}
       <div className="floating-shapes-bg">
         <div className="floating-shape shape-1"></div>
@@ -84,7 +110,12 @@ function Chatbot() {
         <div className="floating-shape shape-4"></div>
         <div className="floating-shape shape-5"></div>
       </div>
-      <ChatHeader />
+      {/* Navbar */}
+      <Navbar
+        theme={theme}
+        onThemeToggle={handleThemeToggle}
+        showAuthButtons={false}
+      />
       <ChatMessages messages={messages} isLoading={isLoading} />
       <ChatInput onSendMessage={handleSendMessage} isLoading={isLoading} />
     </div>
